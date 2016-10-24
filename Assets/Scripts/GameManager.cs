@@ -21,6 +21,9 @@ public class GameManager : MonoBehaviour {
     public GameObject X_GameOver;
 
 
+    Transform red;
+    Transform blue;
+
     // Use this for initialization
     void Start () {
         score = 0;
@@ -35,7 +38,11 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+
+        while (redScript.getCollision())
+        {
+            changeDotPosition();
+        }
     
 	}
 
@@ -48,8 +55,9 @@ public class GameManager : MonoBehaviour {
 
             Instantiate(blueExplosion, dotPosition.position, Quaternion.identity);
 
-            blueScript.changePosition();
-            redScript.changePosition();
+            //blueScript.changePosition();
+            //redScript.changePosition();
+            changeDotPosition();
             generateNewMove();
         }
         else
@@ -74,8 +82,10 @@ public class GameManager : MonoBehaviour {
 
             Instantiate(redExplosion, dotPosition.position, Quaternion.identity);
 
-            blueScript.changePosition();
-            redScript.changePosition();
+            //blueScript.changePosition();
+            //redScript.changePosition();
+
+            changeDotPosition();
 
             generateNewMove();
         }
@@ -112,6 +122,19 @@ public class GameManager : MonoBehaviour {
         }
 
     }
+
+    void changeDotPosition()
+    {
+        //collision check happening in redcircle script
+
+        //while (redScript.getCollision() != true)
+        //{
+            blueScript.changePosition();
+            redScript.changePosition();
+       // }
+    }
+
+
 
     IEnumerator wait()
     {
