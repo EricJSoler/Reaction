@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour {
     public GameObject blueExplosion;
     public GameObject redExplosion;
     public GameObject X_GameOver;
+    bool gameOver = false;
 
 
     Transform red;
@@ -29,6 +30,7 @@ public class GameManager : MonoBehaviour {
         score = 0;
         
         X_GameOver.SetActive(false);
+        gameOver = false;
         blueScript = blueDot.GetComponent<CircleScript>();
         redScript = redDot.GetComponent<RedCircleScript>();
         gameGUI = FindObjectOfType<GameGUI>();
@@ -41,7 +43,7 @@ public class GameManager : MonoBehaviour {
 
         while (redScript.getCollision())
         {
-            changeDotPosition();
+            //changeDotPosition();
         }
     
 	}
@@ -50,18 +52,24 @@ public class GameManager : MonoBehaviour {
     {
         if(bluered)
         {
-            score++;
-            gameGUI.setScore(score);
+            if (!gameOver)
+            {
+                score++;
+                gameGUI.setScore(score);
 
-            Instantiate(blueExplosion, dotPosition.position, Quaternion.identity);
 
-            //blueScript.changePosition();
-            //redScript.changePosition();
-            changeDotPosition();
-            generateNewMove();
+                Instantiate(blueExplosion, dotPosition.position, Quaternion.identity);
+
+                //blueScript.changePosition();
+                //redScript.changePosition();
+
+                generateNewMove();
+                changeDotPosition();
+            }
         }
         else
         {
+            gameOver = true;
             X_GameOver.SetActive(true);
             X_GameOver.transform.position = dotPosition.position;
             
@@ -77,20 +85,26 @@ public class GameManager : MonoBehaviour {
     {
         if(!bluered)
         {
-            score++;
-            gameGUI.setScore(score);
+            if (!gameOver)
+            {
+                score++;
+                gameGUI.setScore(score);
 
-            Instantiate(redExplosion, dotPosition.position, Quaternion.identity);
+                if (!gameOver)
+                    Instantiate(redExplosion, dotPosition.position, Quaternion.identity);
 
-            //blueScript.changePosition();
-            //redScript.changePosition();
+                //blueScript.changePosition();
+                //redScript.changePosition();
 
-            changeDotPosition();
 
-            generateNewMove();
+
+                generateNewMove();
+                changeDotPosition();
+            }
         }
         else
         {
+            gameOver = true;
             X_GameOver.SetActive(true);
             X_GameOver.transform.position = dotPosition.position;
             //gameGUI.setScore(0);
@@ -129,8 +143,10 @@ public class GameManager : MonoBehaviour {
 
         //while (redScript.getCollision() != true)
         //{
+       
             blueScript.changePosition();
             redScript.changePosition();
+        
        // }
     }
 
