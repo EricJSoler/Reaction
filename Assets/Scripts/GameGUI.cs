@@ -4,7 +4,9 @@ using System.Collections;
 public class GameGUI : MonoBehaviour {
 
     float time = 30.0f;
-
+    float displayTime = 0.0f;
+    float roundTime = 0.0f;
+    float multTime = 0.0f;
 
     public static int score;
 
@@ -22,21 +24,29 @@ public class GameGUI : MonoBehaviour {
     public GameObject redB_Text;
     public GameObject blueR_Text;
     public GameObject blueB_Text;
+
     
+
 
     // Use this for initialization
     void Start () {
         
         textDisplay();
+
+        
     }
 	
 	// Update is called once per frame
 	void Update () {
 
-        time -= Time.deltaTime;
-        
+        TextStyle.fontSize = (int)(180.0f * (float)(Screen.width) / 1920.0f); //scale size font
 
-        if(time < 0)
+        time -= Time.deltaTime;
+        //multTime = time * 10;
+        roundTime = (int) time;
+        displayTime = roundTime / 10;
+
+        if(roundTime <= 0.0f)
         {
             Application.LoadLevel(1);
         }
@@ -48,10 +58,16 @@ public class GameGUI : MonoBehaviour {
     void OnGUI()
     {
 
-        GUI.Label(new Rect(10, 10, TextWidth, Screen.width /6), score.ToString(), TextStyle);
+        GUI.Label(new Rect(Screen.width / 15, Screen.height / 20, Screen.width / 12, Screen.width / 12), score.ToString(), TextStyle);
 
-        GUI.Label(new Rect(Screen.width - TextWidth, 10, TextWidth, 22), time.ToString(), TextStyle);
-
+        if (roundTime < 10)
+        {
+            GUI.Label(new Rect(Screen.width - Screen.width / 7.3f, Screen.height / 20, Screen.width / 12, Screen.width / 12), roundTime.ToString(), TextStyle);
+        }
+        else
+        {
+            GUI.Label(new Rect(Screen.width - Screen.width / 6.0f, Screen.height / 20, Screen.width / 12, Screen.width / 12), roundTime.ToString(), TextStyle);
+        }
         textDisplay();
 
     }
