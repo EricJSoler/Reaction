@@ -32,6 +32,13 @@ public class CircleScript : MonoBehaviour {
         
     }
 
+    public void updatePosition(Vector2 newPosition)
+    {
+        this.transform.position = newPosition;
+        this.fadeIn();
+    }
+
+    //deprecating this and replacing it with move to new position going to let the game manager handle choosing where the circles are placed
     public void changePosition()
     {
 

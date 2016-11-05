@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour {
     CircleScript blueScript;
     RedCircleScript redScript;
 
+
+    private const float COLLIDERRADIUS = 1.85f;
     GameGUI gameGUI;
 
     private int score;
@@ -139,18 +141,93 @@ public class GameManager : MonoBehaviour {
 
     void changeDotPosition()
     {
-        //collision check happening in redcircle script
-
-        //while (redScript.getCollision() != true)
-        //{
-       
-            blueScript.changePosition();
-            redScript.changePosition();
+        //blueScript.changePosition();
+        //redScript.changePosition();   
+        Vector2 bluePosition = createValidPositionInGameBoard(COLLIDERRADIUS);
+        Vector2 redPosition = createValidPositionInGameBoard(COLLIDERRADIUS);
+        blueScript.updatePosition(bluePosition);
+        redScript.updatePosition(redPosition);
+        doTheseObjectsOverlap(COLLIDERRADIUS, bluePosition, redPosition);
         
-       // }
     }
 
+    bool doTheseObjectsOverlap(float objectsRadius, Vector2 a, Vector2 b)
+    {
 
+        float distance = Vector3.Distance(a, b);
+
+        if (distance < COLLIDERRADIUS)
+        {
+            //Debug.Log("Overlapping");
+            //Debug.Log(distance);
+            changeDotPosition();
+        }
+
+            return false;
+        //bool above = false;
+        //bool right = false;
+        //if (a.x < b.x)
+        //{
+        //    right = true;
+        //}
+        //if( a.y < b.y )
+        //{
+        //    above = true;
+        //}
+
+        //if(right && b.x - a.x <= objectsRadius * 2) //overlapping push myself right by that amount
+        //{
+        //    Debug.Log("Overlapping On right");
+        //    return true;
+        //}
+        //else if( a.x - b.x <= objectsRadius * 2)
+        //{
+        //    Debug.Log("Overlapping On Left");
+        //    return true;
+        //}
+        //if(above && b.y - a.y <= objectsRadius * 2)//overlapping push myself top by that amount
+        //{
+        //    Debug.Log("Overlapping by above");
+        //    return true;
+        //}
+        //else if (a.y - b.y <= objectsRadius * 2)
+        //{
+        //    Debug.Log("Overlapping by below");
+        //    return true;
+        //}
+        //return false;
+    }
+
+    //private Vector2 recalculateVectorsForOverlappingObjects(float objectsRadius, Vector2 a, Vector2 b)
+    //{
+    //    if (a.x < b.x)
+    //    {
+    //        if (redPosition.y <= bluePosition.y)
+    //        {
+    //            float
+    //        }
+    //        else
+    //        {
+
+    //        }
+
+    //    }
+    //    else
+    //    {
+
+    //    }
+
+    //}
+    private Vector2 createValidPositionInGameBoard(float objectsRadius)
+    {
+        Vector2 temp = Camera.main.ScreenToWorldPoint(new Vector2(Random.Range(0, Screen.width), Random.Range(0, Screen.height)));
+        Vector2 topRightCorner = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
+        Vector2 bottomLeftCorner = Camera.main.ScreenToWorldPoint(new Vector2(0, 0));
+        float x = Mathf.Clamp(temp.x, bottomLeftCorner.x + objectsRadius, topRightCorner.x - objectsRadius);
+        float y = Mathf.Clamp(temp.y, bottomLeftCorner.y + objectsRadius, topRightCorner.y - objectsRadius);
+
+        return new Vector2(x, y);
+    }
 
     IEnumerator wait()
     {

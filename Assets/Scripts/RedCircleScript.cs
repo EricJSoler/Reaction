@@ -32,6 +32,13 @@ public class RedCircleScript : MonoBehaviour {
         manager.redMove(this.transform);
     }
 
+    public void updatePosition(Vector2 newPosition)
+    {
+        this.transform.position = newPosition;
+        this.fadeIn();
+    }
+
+    //deprecating this
     public void changePosition()
     {
         //place dot on a random and new position within the screen boundrys
