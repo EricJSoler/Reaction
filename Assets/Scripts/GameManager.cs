@@ -21,11 +21,25 @@ public class GameManager : MonoBehaviour {
     public GameObject blueExplosion;
     public GameObject redExplosion;
     public GameObject X_GameOver;
+    public static GameObject saveScore;
     bool gameOver = false;
+
+    
+
 
 
     Transform red;
     Transform blue;
+
+    void Awake()
+    {
+
+   
+         
+            //initialize
+        
+    }
+
 
     // Use this for initialization
     void Start () {
@@ -38,6 +52,10 @@ public class GameManager : MonoBehaviour {
         gameGUI = FindObjectOfType<GameGUI>();
         gameGUI.setScore(0);
         generateNewMove();
+
+        saveScore = GameObject.Find("ScoreSave");
+
+
     }
 	
 	// Update is called once per frame
@@ -47,6 +65,13 @@ public class GameManager : MonoBehaviour {
         {
             //changeDotPosition();
         }
+
+
+        if (gameGUI.getTimeUp())
+        {
+            gameFinished();
+        }
+
     
 	}
 
@@ -231,13 +256,21 @@ public class GameManager : MonoBehaviour {
 
     IEnumerator wait()
     {
-        
-        
+
+        gameGUI.setGameOver(true);
         yield return new WaitForSeconds(2.0f);
-        Application.LoadLevel(1);
+        gameFinished();
 
     }
 
+
+    public void gameFinished()
+    {
+        
+        //save score, then load next scene
+        saveScore.GetComponent<ScoresManager>().setcurScore(gameGUI.getScore());
+        Application.LoadLevel(1);
+    }
 
 
 }
