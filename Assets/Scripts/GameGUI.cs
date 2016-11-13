@@ -25,15 +25,19 @@ public class GameGUI : MonoBehaviour {
     public GameObject blueR_Text;
     public GameObject blueB_Text;
 
-    
-
+    public GameObject saveScore;
+    private bool timeUp;
+    private bool gameOver;
 
     // Use this for initialization
     void Start () {
-        
-        textDisplay();
 
+        timeUp = false;
+        gameOver = false;
+        textDisplay();
         
+
+
     }
 	
 	// Update is called once per frame
@@ -41,14 +45,18 @@ public class GameGUI : MonoBehaviour {
 
         TextStyle.fontSize = (int)(180.0f * (float)(Screen.width) / 1920.0f); //scale size font
 
-        time -= Time.deltaTime;
-        //multTime = time * 10;
-        roundTime = (int) time;
-        displayTime = roundTime / 10;
+        if (!gameOver)
+        {
+            time -= Time.deltaTime;
+            //multTime = time * 10;
+            roundTime = (int)time;
+            displayTime = roundTime / 10;
+        }
 
         if(roundTime <= 0.0f)
         {
-            Application.LoadLevel(1);
+            timeUp = true;
+            //Application.LoadLevel(1);
         }
 
         float t = Mathf.PingPong(Time.time, duration);
@@ -77,10 +85,25 @@ public class GameGUI : MonoBehaviour {
         score = inScore;
     }
 
+    public int getScore()
+    {
+        return score;
+    }
+
     public void setRedBlueDisplay(bool inDot, int inTextColor)
     {
         redblueGUI = inDot;
         textColor = inTextColor;
+    }
+
+    public bool getTimeUp()
+    {
+        return timeUp;
+    }
+
+    public void setGameOver(bool inBool)
+    {
+        gameOver = inBool;
     }
 
     public void textDisplay()

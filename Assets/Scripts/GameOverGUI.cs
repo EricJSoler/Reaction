@@ -9,10 +9,21 @@ public class GameOverGUI : MonoBehaviour
     public GUIStyle TextStyle;
     public GUIStyle TextStyle2;
     public GUIStyle btnStyle;
+    public GameObject saveScore;
+    ScoresManager scores_m;
+
+    int curScore;
+
+    
+
     // Use this for initialization
     void Start()
     {
+        saveScore = GameObject.Find("ScoreSave");
+        scores_m = saveScore.GetComponent<ScoresManager>();
+        curScore = scores_m.getcurScore();
 
+        
     }
 
     // Update is called once per frame
@@ -30,6 +41,8 @@ public class GameOverGUI : MonoBehaviour
 
 
         GUI.Label(new Rect(Screen.width / 4.2f, Screen.height / 5f, Screen.width / 6, Screen.width / 6), "Score: ", TextStyle);
+        GUI.Label(new Rect(Screen.width / 1.8f, Screen.height / 5f, Screen.width / 6, Screen.width / 6), curScore.ToString(), TextStyle);
+
         GUI.Label(new Rect(Screen.width / 4.2f, Screen.height / 4f, Screen.width / 6, Screen.width / 6), "Best: ", TextStyle);
         GUI.Label(new Rect(Screen.width / 4.2f, Screen.height / 3f, Screen.width / 6, Screen.width / 6), "World Best: ", TextStyle);
         GUI.Label(new Rect(Screen.width / 4.2f, Screen.height / 1.3f, Screen.width / 6, Screen.width / 6), "Leaderboards: ", TextStyle2);
@@ -37,6 +50,7 @@ public class GameOverGUI : MonoBehaviour
         //GUI.Label(new Rect(10, 10, 100, 40), "GameOver");
         if (GUI.Button(new Rect(Screen.width / 4, Screen.height / 2, Screen.width / 2, Screen.height / 11), "", btnStyle))
         {
+            scores_m.setcurScore(0);
             SceneManager.LoadScene(0);
         }
 
