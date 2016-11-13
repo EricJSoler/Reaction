@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour {
     public GameObject X_GameOver;
     public static GameObject saveScore;
     bool gameOver = false;
-
+    CameraScript cameraRef;
     
 
 
@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour {
     // Use this for initialization
     void Start () {
         score = 0;
-        
+        cameraRef = GameObject.Find("Main Camera").GetComponent<CameraScript>();
         X_GameOver.SetActive(false);
         gameOver = false;
         blueScript = blueDot.GetComponent<CircleScript>();
@@ -71,6 +71,13 @@ public class GameManager : MonoBehaviour {
         {
             gameFinished();
         }
+
+
+        if (gameOver)
+        {
+            cameraRef.setHit(true);
+        }
+
 
     
 	}
