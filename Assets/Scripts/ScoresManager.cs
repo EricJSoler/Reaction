@@ -2,12 +2,15 @@
 using System.Collections;
 
 public class ScoresManager : MonoBehaviour {
+    //This class manages scores that will be available 
+    //from one scene to another. Also thinking about 
+    //putting leaderboard logic in hear as well.
 
     public static ScoresManager instance;
 
 
     public int curScore;
-    private int highScore;
+    
 
     void Awake()
     {
@@ -48,13 +51,14 @@ public class ScoresManager : MonoBehaviour {
 
     public int getHighScore()
     {
-        return highScore;
+        return PlayerPrefs.GetInt("HighScore");
     }
 
     
-    public void highScoreEval()
+    public void setHighScore(int inHigh)
     {
-
+        PlayerPrefs.SetInt("HighScore", inHigh);
+        
     }
 
 

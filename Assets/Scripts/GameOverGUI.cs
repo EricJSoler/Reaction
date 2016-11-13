@@ -12,7 +12,8 @@ public class GameOverGUI : MonoBehaviour
     public GameObject saveScore;
     ScoresManager scores_m;
 
-    int curScore;
+    int curScore = 0;
+    
 
     
 
@@ -22,6 +23,12 @@ public class GameOverGUI : MonoBehaviour
         saveScore = GameObject.Find("ScoreSave");
         scores_m = saveScore.GetComponent<ScoresManager>();
         curScore = scores_m.getcurScore();
+
+
+        if(curScore > scores_m.getHighScore())
+        {
+            scores_m.setHighScore(curScore);
+        }
 
         
     }
@@ -44,6 +51,13 @@ public class GameOverGUI : MonoBehaviour
         GUI.Label(new Rect(Screen.width / 1.8f, Screen.height / 5f, Screen.width / 6, Screen.width / 6), curScore.ToString(), TextStyle);
 
         GUI.Label(new Rect(Screen.width / 4.2f, Screen.height / 4f, Screen.width / 6, Screen.width / 6), "Best: ", TextStyle);
+
+        GUI.Label(new Rect(Screen.width / 1.8f, Screen.height / 4f, Screen.width / 6, Screen.width / 6), 
+            scores_m.getHighScore().ToString()
+            , TextStyle);
+
+
+
         GUI.Label(new Rect(Screen.width / 4.2f, Screen.height / 3f, Screen.width / 6, Screen.width / 6), "World Best: ", TextStyle);
         GUI.Label(new Rect(Screen.width / 4.2f, Screen.height / 1.3f, Screen.width / 6, Screen.width / 6), "Leaderboards: ", TextStyle2);
 
