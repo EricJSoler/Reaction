@@ -166,8 +166,5 @@ public class GameGUI : MonoBehaviour {
                 blueB_Text.SetActive(false);
             }
         }
-
     }
-
-
 }

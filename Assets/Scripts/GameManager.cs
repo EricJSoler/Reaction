@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour {
     private int blueredInt = 0;
     private int colorText = 0;
 
-
+    public GameObject crumpled;
     public GameObject blueExplosion;
     public GameObject redExplosion;
     public GameObject X_GameOver;
@@ -45,6 +45,8 @@ public class GameManager : MonoBehaviour {
     void Start () {
         score = 0;
         cameraRef = GameObject.Find("Main Camera").GetComponent<CameraScript>();
+        crumpled = GameObject.Find("Crumpled");
+        crumpled.SetActive(false);
         X_GameOver.SetActive(false);
         gameOver = false;
         blueScript = blueDot.GetComponent<CircleScript>();
@@ -263,7 +265,7 @@ public class GameManager : MonoBehaviour {
 
     IEnumerator wait()
     {
-
+        crumpled.SetActive(true);
         gameGUI.setGameOver(true);
         yield return new WaitForSeconds(2.0f);
         gameFinished();
@@ -276,7 +278,7 @@ public class GameManager : MonoBehaviour {
         
         //save score, then load next scene
         saveScore.GetComponent<ScoresManager>().setcurScore(gameGUI.getScore());
-        Application.LoadLevel(1);
+        Application.LoadLevel(2);
     }
 
 
