@@ -19,13 +19,8 @@ public class CameraScript : MonoBehaviour
         startPos = new Vector3(0, 0, 0f);
     }
 
-
-
     void Update()
     {
-
-
-
         if (hit)
         {
             DoShake();
@@ -35,20 +30,14 @@ public class CameraScript : MonoBehaviour
         if (ShakeIntensity > 0 && time <= 0.2)
         {
             transform.position = OriginalPos + Random.insideUnitSphere * ShakeIntensity;
-
-
             ShakeIntensity -= ShakeDecay;
         }
-
-
-
     }
 
     public void setHit(bool inHit)
     {
         hit = inHit;
     }
-
 
     public void DoShake()
     {

@@ -53,13 +53,11 @@ public class ScoresManager : MonoBehaviour {
     {
         return PlayerPrefs.GetInt("HighScore");
     }
-
     
     public void setHighScore(int inHigh)
     {
         PlayerPrefs.SetInt("HighScore", inHigh);
         
     }
-
 
 }
