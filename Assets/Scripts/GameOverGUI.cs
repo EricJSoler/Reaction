@@ -53,6 +53,8 @@ public class GameOverGUI : MonoBehaviour
         GUI.Label(new Rect(Screen.width / 4.2f, Screen.height / 3f, Screen.width / 6, Screen.width / 6), "World Best: ", TextStyle);
         GUI.Label(new Rect(Screen.width / 4.2f, Screen.height / 1.3f, Screen.width / 6, Screen.width / 6), "Leaderboards: ", TextStyle2);
 
+        //GUI.Label(new Rect(Screen.width / 4.2f, Screen.height / 1.3f, Screen.width / 6, Screen.width / 6), "name test: " + scores_m.getUsername().ToString(), TextStyle2);
+
         //GUI.Label(new Rect(10, 10, 100, 40), "GameOver");
         if (GUI.Button(new Rect(Screen.width / 4, Screen.height / 2, Screen.width / 2, Screen.height / 11), "", btnStyle))
         {

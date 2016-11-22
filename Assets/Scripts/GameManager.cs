@@ -265,7 +265,7 @@ public class GameManager : MonoBehaviour {
 
     IEnumerator wait()
     {
-        crumpled.SetActive(true);
+
         gameGUI.setGameOver(true);
         yield return new WaitForSeconds(2.0f);
         gameFinished();

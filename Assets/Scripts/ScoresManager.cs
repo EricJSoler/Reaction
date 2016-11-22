@@ -60,4 +60,13 @@ public class ScoresManager : MonoBehaviour {
         
     }
 
+    public void setNewUserName(string inName)
+    {
+        PlayerPrefs.SetString("Username", inName);
+    }
+    public string getUsername()
+    {
+        return PlayerPrefs.GetString("Username");
+    }
+
 }
