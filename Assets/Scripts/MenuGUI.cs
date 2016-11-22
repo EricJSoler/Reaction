@@ -8,7 +8,6 @@ public class MenuGUI : MonoBehaviour {
     public GUIStyle TextStyle;
     public GUIStyle btnStyle2;
 
-    public GameObject name;
     public GameObject canvas;
     public string userName = "";
 
@@ -16,7 +15,7 @@ public class MenuGUI : MonoBehaviour {
     public static GameObject saveScore;
 
 
-    private InputField input;
+    public InputField input;
     
 
     // Use this for initialization
@@ -24,14 +23,23 @@ public class MenuGUI : MonoBehaviour {
 
         saveScore = GameObject.Find("ScoreSave");
         //gt = GetComponent<GUIText>();
-        canvas = GameObject.Find("Canvas");
-        input = canvas.GetComponent<InputField>();
+        //canvas = GameObject.Find("Canvas");
+        //input = canvas.GetComponent<InputField>();
+
+        if (saveScore.GetComponent<ScoresManager>().getUsername() != null)
+        {
+
+            input.text = saveScore.GetComponent<ScoresManager>().getUsername();
+        }
     }
 	
 	// Update is called once per frame
 	void Update () {
         TextStyle.fontSize = (int)(270.0f * (float)(Screen.width) / 1920.0f); //scale size font
         //userName = input.text;
+
+        //userName = input.text;
+        //Debug.Log("name " + userName.ToString());
     }
 
     void OnGUI()
@@ -44,10 +52,10 @@ public class MenuGUI : MonoBehaviour {
         {
 
             
-            Debug.Log("name " + userName);
-            //userName = input.text;
-            //saveScore.GetComponent<ScoresManager>().setNewUserName(userName);
-
+            
+            userName = input.text;
+            saveScore.GetComponent<ScoresManager>().setNewUserName(userName);
+            
 
             Application.LoadLevel(1);
         }
