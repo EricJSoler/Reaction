@@ -41,16 +41,16 @@ public class GameOverGUI : MonoBehaviour
     void OnGUI()
     {
 
-        GUI.Label(new Rect(Screen.width / 4.2f, Screen.height / 5f, Screen.width / 6, Screen.width / 6), "Score: ", TextStyle);
-        GUI.Label(new Rect(Screen.width / 1.8f, Screen.height / 5f, Screen.width / 6, Screen.width / 6), curScore.ToString(), TextStyle);
+        GUI.Label(new Rect(Screen.width / 4.2f, Screen.height / 5.25f, Screen.width / 6, Screen.width / 6), "Score: ", TextStyle);
+        GUI.Label(new Rect(Screen.width / 1.8f, Screen.height / 5.25f, Screen.width / 6, Screen.width / 6), curScore.ToString(), TextStyle);
 
-        GUI.Label(new Rect(Screen.width / 4.2f, Screen.height / 4f, Screen.width / 6, Screen.width / 6), "Best: ", TextStyle);
+        GUI.Label(new Rect(Screen.width / 4.2f, Screen.height / 3.7f, Screen.width / 6, Screen.width / 6), "Best: ", TextStyle);
 
-        GUI.Label(new Rect(Screen.width / 1.8f, Screen.height / 4f, Screen.width / 6, Screen.width / 6), 
+        GUI.Label(new Rect(Screen.width / 1.8f, Screen.height / 3.7f, Screen.width / 6, Screen.width / 6), 
             scores_m.getHighScore().ToString()
             , TextStyle);
 
-        GUI.Label(new Rect(Screen.width / 4.2f, Screen.height / 3f, Screen.width / 6, Screen.width / 6), "World Best: ", TextStyle);
+        GUI.Label(new Rect(Screen.width / 4.2f, Screen.height / 2.8f, Screen.width / 6, Screen.width / 6), "Rank: ", TextStyle);
         GUI.Label(new Rect(Screen.width / 4.2f, Screen.height / 1.3f, Screen.width / 6, Screen.width / 6), "Leaderboards: ", TextStyle2);
 
         //GUI.Label(new Rect(Screen.width / 4.2f, Screen.height / 1.3f, Screen.width / 6, Screen.width / 6), "name test: " + scores_m.getUsername().ToString(), TextStyle2);
