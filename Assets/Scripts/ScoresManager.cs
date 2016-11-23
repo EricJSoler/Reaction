@@ -10,7 +10,7 @@ public class ScoresManager : MonoBehaviour {
 
 
     public int curScore;
-    
+    public string userName;
 
     void Awake()
     {
@@ -63,6 +63,7 @@ public class ScoresManager : MonoBehaviour {
     public void setNewUserName(string inName)
     {
         PlayerPrefs.SetString("Username", inName);
+        userName = PlayerPrefs.GetString("Username");
     }
     public string getUsername()
     {

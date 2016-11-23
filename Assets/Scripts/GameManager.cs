@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour {
         gameGUI = FindObjectOfType<GameGUI>();
         gameGUI.setScore(0);
         generateNewMove();
-
+        //changeDotPosition();
         saveScore = GameObject.Find("ScoreSave");
 
 
