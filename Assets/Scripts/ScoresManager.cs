@@ -8,9 +8,16 @@ public class ScoresManager : MonoBehaviour {
 
     public static ScoresManager instance;
 
+    const string privateCode = "HooqDaFhBUOESbiRRppCbQ2WWrdPcglEqb9N2R1XughA";
+    const string publicCode = "583520dc8af6030dbcf810a2";
+    const string webURL = "http://dreamlo.com/lb/";
 
     public int curScore;
     public string userName;
+
+    public HighScore[] highScoresList;
+
+
 
     void Awake()
     {
@@ -29,10 +36,10 @@ public class ScoresManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
 
+    
 
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -69,5 +76,83 @@ public class ScoresManager : MonoBehaviour {
     {
         return PlayerPrefs.GetString("Username");
     }
+
+    public void AddNewLeadScore(string user, int score)
+    {
+        StartCoroutine(UploadNewHighScore(user, score));
+    }
+
+
+    IEnumerator UploadNewHighScore(string user, int score)
+    {
+        WWW www = new WWW(webURL + privateCode + "/add/" + WWW.EscapeURL(user) + "/" + score);
+        yield return www;
+
+        if (string.IsNullOrEmpty(www.error))
+        {
+            DownloadHighScores();
+            Debug.Log("upload Successful");
+        }
+        else
+        {
+            Debug.Log("Error uploading " + www.error);
+        }
+    }
+
+    public void DownloadHighScores()
+    {
+        StartCoroutine("DownLoadHighScoresFromDatabase");
+    }
+
+
+
+    IEnumerator DownLoadHighScoresFromDatabase()
+    {
+        WWW www = new WWW(webURL + publicCode + "/pipe/0/10");
+        yield return www;
+
+        if (string.IsNullOrEmpty(www.error))
+        {
+            Debug.Log(www.text);
+            FormatHighscores(www.text);
+        }
+        else
+        {
+            Debug.Log("Error Downloading " + www.error);
+        }
+    }
+
+    void FormatHighscores(string textStream)
+    {
+        string[] entries = textStream.Split(new char[] { '\n' }, System.StringSplitOptions.RemoveEmptyEntries);
+        highScoresList = new HighScore[entries.Length];
+        for (int i = 0; i < entries.Length; i++)
+        {
+            string[] entryInfo = entries[i].Split(new char[] { '|' });
+            string username = entryInfo[0];
+            int score = int.Parse(entryInfo[1]);
+            highScoresList[i] = new HighScore(username, score);
+            //Debug.Log(highScoresList[i].userName + ": " + highScoresList[i].score);
+        }
+
+       
+    }
+
+    public HighScore[] getHighScoreList()
+    {
+        return highScoresList;
+    }
+    //public struct HighScore
+    //{
+    //    public string userName;
+    //    public int score;
+
+    //    public HighScore(string _username, int _score)
+    //    {
+    //        userName = _username;
+    //        score = _score;
+    //    }
+    //}
+
 
 }

@@ -10,23 +10,34 @@ public class GameOverGUI : MonoBehaviour
     public GUIStyle TextStyle2;
     public GUIStyle btnStyle;
     public GUIStyle btnStyle2;
+    public GUIStyle btnStyle3;
     public GameObject saveScore;
     ScoresManager scores_m;
 
     int curScore = 0;
-    
-    // Use this for initialization
-    void Start()
+
+    void Awake()
     {
         saveScore = GameObject.Find("ScoreSave");
         scores_m = saveScore.GetComponent<ScoresManager>();
         curScore = scores_m.getcurScore();
+        
 
+    }
+    
+    // Use this for initialization
+    void Start()
+    {
+        
 
-        if(curScore > scores_m.getHighScore())
+        if (curScore > scores_m.getHighScore())
         {
             scores_m.setHighScore(curScore);
+            
         }
+        scores_m.AddNewLeadScore(scores_m.getUsername(), scores_m.getcurScore());
+        //scores_m.DownloadHighScores();
+
     }
 
     // Update is called once per frame
@@ -44,14 +55,14 @@ public class GameOverGUI : MonoBehaviour
         GUI.Label(new Rect(Screen.width / 4.2f, Screen.height / 5.25f, Screen.width / 6, Screen.width / 6), "Score: ", TextStyle);
         GUI.Label(new Rect(Screen.width / 1.8f, Screen.height / 5.25f, Screen.width / 6, Screen.width / 6), curScore.ToString(), TextStyle);
 
-        GUI.Label(new Rect(Screen.width / 4.2f, Screen.height / 3.7f, Screen.width / 6, Screen.width / 6), "Best: ", TextStyle);
+        GUI.Label(new Rect(Screen.width / 4.2f, Screen.height / 3.5f, Screen.width / 6, Screen.width / 6), "Best: ", TextStyle);
 
         GUI.Label(new Rect(Screen.width / 1.8f, Screen.height / 3.7f, Screen.width / 6, Screen.width / 6), 
             scores_m.getHighScore().ToString()
             , TextStyle);
 
-        GUI.Label(new Rect(Screen.width / 4.2f, Screen.height / 2.8f, Screen.width / 6, Screen.width / 6), "Rank: ", TextStyle);
-        GUI.Label(new Rect(Screen.width / 4.2f, Screen.height / 1.3f, Screen.width / 6, Screen.width / 6), "Leaderboards: ", TextStyle2);
+        //GUI.Label(new Rect(Screen.width / 4.2f, Screen.height / 2.8f, Screen.width / 6, Screen.width / 6), "Rank: ", TextStyle);
+        GUI.Label(new Rect(Screen.width / 4.2f, Screen.height / 1.05f, Screen.width / 6, Screen.width / 6), "Leaderboards: ", TextStyle2);
 
         //GUI.Label(new Rect(Screen.width / 4.2f, Screen.height / 1.3f, Screen.width / 6, Screen.width / 6), "name test: " + scores_m.getUsername().ToString(), TextStyle2);
 
@@ -67,6 +78,12 @@ public class GameOverGUI : MonoBehaviour
         {
             scores_m.setcurScore(0);
             SceneManager.LoadScene(0);
+        }
+
+        if (GUI.Button(new Rect(Screen.width / 4, Screen.height / 1.3f, Screen.width / 2, Screen.height / 11), "", btnStyle3))
+        {
+            //scores_m.setcurScore(0);
+            SceneManager.LoadScene(3);
         }
 
 
