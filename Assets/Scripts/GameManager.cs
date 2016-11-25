@@ -24,8 +24,8 @@ public class GameManager : MonoBehaviour {
     public static GameObject saveScore;
     bool gameOver = false;
     CameraScript cameraRef;
-    
 
+    public Animation anim;
 
 
     Transform red;
@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour {
     void Awake()
     {
 
-   
+       
          
             //initialize
         
@@ -107,8 +107,9 @@ public class GameManager : MonoBehaviour {
         {
             gameOver = true;
             X_GameOver.SetActive(true);
-            X_GameOver.transform.position = dotPosition.position;
-            
+            //X_GameOver.transform.position = dotPosition.position;
+            X_GameOver.transform.position = new Vector3(dotPosition.position.x, dotPosition.position.y, -5f);
+
             StartCoroutine(wait());
 
         }
@@ -142,7 +143,7 @@ public class GameManager : MonoBehaviour {
         {
             gameOver = true;
             X_GameOver.SetActive(true);
-            X_GameOver.transform.position = dotPosition.position;
+            X_GameOver.transform.position = new Vector3(dotPosition.position.x, dotPosition.position.y, -5f);
             //gameGUI.setScore(0);
             StartCoroutine(wait());
 
