@@ -62,7 +62,7 @@ public class GameOverGUI : MonoBehaviour
             , TextStyle);
 
         //GUI.Label(new Rect(Screen.width / 4.2f, Screen.height / 2.8f, Screen.width / 6, Screen.width / 6), "Rank: ", TextStyle);
-        GUI.Label(new Rect(Screen.width / 4.2f, Screen.height / 1.05f, Screen.width / 6, Screen.width / 6), "Leaderboards: ", TextStyle2);
+        
 
         //GUI.Label(new Rect(Screen.width / 4.2f, Screen.height / 1.3f, Screen.width / 6, Screen.width / 6), "name test: " + scores_m.getUsername().ToString(), TextStyle2);
 
