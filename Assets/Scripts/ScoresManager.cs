@@ -16,7 +16,7 @@ public class ScoresManager : MonoBehaviour {
     public string userName;
 
     public HighScore[] highScoresList;
-
+    bool arrayReady = false;
 
 
     void Awake()
@@ -108,6 +108,7 @@ public class ScoresManager : MonoBehaviour {
 
     IEnumerator DownLoadHighScoresFromDatabase()
     {
+        arrayReady = false;
         WWW www = new WWW(webURL + publicCode + "/pipe/0/10");
         yield return www;
 
@@ -134,13 +135,18 @@ public class ScoresManager : MonoBehaviour {
             highScoresList[i] = new HighScore(username, score);
             //Debug.Log(highScoresList[i].userName + ": " + highScoresList[i].score);
         }
-
+        arrayReady = true;
        
     }
 
     public HighScore[] getHighScoreList()
     {
         return highScoresList;
+    }
+
+    public bool arReady()
+    {
+        return arrayReady;
     }
     //public struct HighScore
     //{
