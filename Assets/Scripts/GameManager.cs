@@ -33,16 +33,17 @@ public class GameManager : MonoBehaviour {
 
     void Awake()
     {
+    
 
-       
-         
-            //initialize
-        
+        //initialize
+
     }
 
 
     // Use this for initialization
     void Start () {
+
+
         score = 0;
         cameraRef = GameObject.Find("Main Camera").GetComponent<CameraScript>();
         crumpled = GameObject.Find("Crumpled");
@@ -53,15 +54,16 @@ public class GameManager : MonoBehaviour {
         redScript = redDot.GetComponent<RedCircleScript>();
         gameGUI = FindObjectOfType<GameGUI>();
         gameGUI.setScore(0);
-        generateNewMove();
-        //changeDotPosition();
+
         saveScore = GameObject.Find("ScoreSave");
 
+        generateNewMove();
+        changeDotPosition();
 
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update () {
 
         while (redScript.getCollision())
         {
