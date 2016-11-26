@@ -74,7 +74,7 @@ public class GameGUI : MonoBehaviour {
       
 
         float t = Mathf.PingPong(Time.time, duration);
-        fadeIn();
+        fadeInTut();
     }
 
     void OnGUI()
@@ -203,7 +203,7 @@ public class GameGUI : MonoBehaviour {
         
     }
 
-    public void fadeIn()
+    public void fadeInTut()
     {
         StartCoroutine(fadeInTxt());
 
