@@ -19,7 +19,7 @@ public class GameOverGUI : MonoBehaviour
 
     int curScore = 0;
 
-    const string defaultName = "unknown";
+    
 
     void Awake()
     {
@@ -34,21 +34,14 @@ public class GameOverGUI : MonoBehaviour
     void Start()
     {
         
-
+        //save high score to device
         if (curScore > scores_m.getHighScore())
         {
             scores_m.setHighScore(curScore);
             
         }
+        saveScoresToLeaderBoard();
 
-        if (scores_m.getUsername() == "")
-        {
-            scores_m.AddNewLeadScore(defaultName, scores_m.getcurScore());
-        }
-        else
-        {
-            scores_m.AddNewLeadScore(scores_m.getUsername(), scores_m.getcurScore());
-        }
         //scores_m.DownloadHighScores();
 
     }
@@ -64,7 +57,24 @@ public class GameOverGUI : MonoBehaviour
         {        
              HighScoreList = scores_m.getHighScoreList();
         }
+
         
+        
+    }
+
+    public void saveScoresToLeaderBoard()
+    {
+        //save scores to leaderBoard
+            
+        scores_m.AddNewLeadScore(scores_m.getUsername(), scores_m.getcurScore());
+        Debug.Log("offline score " + scores_m.getOfflineScore().ToString());
+        //save your highest score while offline
+        if (scores_m.getOfflineScore() > 0)
+        {
+            Debug.Log("OFF call");
+            scores_m.AddNewLeadScore(scores_m.getUsername(), scores_m.getOfflineScore());
+            scores_m.setOfflineScoreToZero();
+        }
     }
 
     void OnGUI()
@@ -85,6 +95,12 @@ public class GameOverGUI : MonoBehaviour
         {
             GUI.Label(new Rect(Screen.width / 1.35f, Screen.height / 2.63f, Screen.width / 6, Screen.width / 6),
                 HighScoreList[0].score.ToString()
+                , TextStyle);
+        }
+        else
+        {
+            GUI.Label(new Rect(Screen.width / 1.35f, Screen.height / 2.63f, Screen.width / 6, Screen.width / 6),
+                "-"
                 , TextStyle);
         }
         //GUI.Label(new Rect(Screen.width / 4.2f, Screen.height / 2.8f, Screen.width / 6, Screen.width / 6), "Rank: ", TextStyle);
