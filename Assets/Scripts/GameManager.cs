@@ -31,6 +31,10 @@ public class GameManager : MonoBehaviour {
     Transform red;
     Transform blue;
 
+    bool startGame = false;
+
+
+
     void Awake()
     {
     
@@ -45,6 +49,7 @@ public class GameManager : MonoBehaviour {
 
 
         score = 0;
+        startGame = false;
         cameraRef = GameObject.Find("Main Camera").GetComponent<CameraScript>();
         crumpled = GameObject.Find("Crumpled");
         crumpled.SetActive(false);
@@ -71,11 +76,17 @@ public class GameManager : MonoBehaviour {
         }
 
 
+
+        if ((Input.touchCount > 0) || Input.GetMouseButtonDown(0))
+        {
+            startGame = true;
+            gameGUI.setStart(startGame);
+        }
+
         if (gameGUI.getTimeUp())
         {
             gameFinished();
         }
-
 
         if (gameOver)
         {
@@ -88,7 +99,8 @@ public class GameManager : MonoBehaviour {
 
     public void blueMove(Transform dotPosition)
     {
-        if(bluered)
+        gameGUI.setStart(startGame);
+        if (bluered)
         {
             if (!gameOver)
             {
@@ -122,15 +134,16 @@ public class GameManager : MonoBehaviour {
 
     public void redMove(Transform dotPosition)
     {
-        if(!bluered)
+        gameGUI.setStart(startGame);
+        if (!bluered)
         {
             if (!gameOver)
             {
                 score++;
                 gameGUI.setScore(score);
 
-                if (!gameOver)
-                    Instantiate(redExplosion, dotPosition.position, Quaternion.identity);
+                
+                Instantiate(redExplosion, dotPosition.position, Quaternion.identity);
 
                 //blueScript.changePosition();
                 //redScript.changePosition();
