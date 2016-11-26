@@ -48,7 +48,7 @@ public class MenuGUI : MonoBehaviour {
             Debug.Log("nothing");
         }
 
-        if(Input.touchCount > 1)
+        if((Input.touchCount > 1) && input.text == "infinite")
         {
             infinite_timer += Time.deltaTime;
             if (infinite_timer > 10f)
