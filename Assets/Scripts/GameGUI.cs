@@ -35,6 +35,9 @@ public class GameGUI : MonoBehaviour {
     public SpriteRenderer tapRenderer;
     public SpriteRenderer tutRenderer;
 
+    public SpriteRenderer tutLighttxt;
+    public SpriteRenderer tutRighttxt;
+
     // Use this for initialization
     void Start () {
 
@@ -71,7 +74,7 @@ public class GameGUI : MonoBehaviour {
       
 
         float t = Mathf.PingPong(Time.time, duration);
-        
+        fadeIn();
     }
 
     void OnGUI()
@@ -200,6 +203,12 @@ public class GameGUI : MonoBehaviour {
         
     }
 
+    public void fadeIn()
+    {
+        StartCoroutine(fadeInTxt());
+
+    }
+
     private IEnumerator fadeOutTxt()
     {
         float duration = .4f;
@@ -214,11 +223,35 @@ public class GameGUI : MonoBehaviour {
             blurRenderer.color = new Color(blurRenderer.color.r, blurRenderer.color.g, blurRenderer.color.b, alpha);
             //tapRenderer.color = new Color(blurRenderer.color.r, blurRenderer.color.g, blurRenderer.color.b, alpha);
             tutRenderer.color = new Color(tutRenderer.color.r, tutRenderer.color.g, tutRenderer.color.b, alpha);
+            tutLighttxt.color = new Color(blurRenderer.color.r, blurRenderer.color.g, blurRenderer.color.b, alpha);
+            tutRighttxt.color = new Color(tutRenderer.color.r, tutRenderer.color.g, tutRenderer.color.b, alpha);
             currentTime += Time.deltaTime;
             yield return null;
         }
         tutRenderer.GetComponent<Renderer>().enabled = false;
         blurRenderer.GetComponent<Renderer>().enabled = false;
+        tutLighttxt.GetComponent<Renderer>().enabled = false;
+        tutRighttxt.GetComponent<Renderer>().enabled = false;
+        yield break;
+    }
+
+    private IEnumerator fadeInTxt()
+    {
+        float duration = 1.06f;
+        float currentTime = 0f;
+
+        float oldAlpha = 0.0f;
+        float finalAlpha = 1.0f;
+
+        while (currentTime < duration)
+        {
+            float alpha = Mathf.Lerp(oldAlpha, finalAlpha, currentTime / duration);
+            tutLighttxt.color = new Color(blurRenderer.color.r, blurRenderer.color.g, blurRenderer.color.b, alpha);
+            tutRighttxt.color = new Color(tutRenderer.color.r, tutRenderer.color.g, tutRenderer.color.b, alpha);
+            currentTime += Time.deltaTime;
+            yield return null;
+        }
+      
         yield break;
     }
 }
