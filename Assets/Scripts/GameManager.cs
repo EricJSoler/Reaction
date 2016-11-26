@@ -270,11 +270,11 @@ public class GameManager : MonoBehaviour {
     //}
     private Vector2 createValidPositionInGameBoard(float objectsRadius)
     {
-        Vector2 temp = Camera.main.ScreenToWorldPoint(new Vector2(Random.Range(0, Screen.width), Random.Range(0, Screen.height)));
-        Vector2 topRightCorner = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
-        Vector2 bottomLeftCorner = Camera.main.ScreenToWorldPoint(new Vector2(0, 0));
-        float x = Mathf.Clamp(temp.x, bottomLeftCorner.x + objectsRadius, topRightCorner.x - objectsRadius);
-        float y = Mathf.Clamp(temp.y, bottomLeftCorner.y + objectsRadius, topRightCorner.y - objectsRadius);
+        Vector2 temp = Camera.main.ScreenToWorldPoint(new Vector2(Random.Range(0, Screen.width), Random.Range(0, Screen.height /1.4f)));
+        Vector2 btmRightCorner = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
+        Vector2 topLeftCorner = Camera.main.ScreenToWorldPoint(new Vector2(0, 0));
+        float x = Mathf.Clamp(temp.x, topLeftCorner.x + objectsRadius, btmRightCorner.x - objectsRadius);
+        float y = Mathf.Clamp(temp.y, topLeftCorner.y + objectsRadius, btmRightCorner.y - objectsRadius);
 
         return new Vector2(x, y);
     }
