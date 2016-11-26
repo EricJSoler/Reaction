@@ -19,6 +19,8 @@ public class GameOverGUI : MonoBehaviour
 
     int curScore = 0;
 
+    const string defaultName = "unknown";
+
     void Awake()
     {
         saveScore = GameObject.Find("ScoreSave");
@@ -38,7 +40,15 @@ public class GameOverGUI : MonoBehaviour
             scores_m.setHighScore(curScore);
             
         }
-        scores_m.AddNewLeadScore(scores_m.getUsername(), scores_m.getcurScore());
+
+        if (scores_m.getUsername() == "")
+        {
+            scores_m.AddNewLeadScore(defaultName, scores_m.getcurScore());
+        }
+        else
+        {
+            scores_m.AddNewLeadScore(scores_m.getUsername(), scores_m.getcurScore());
+        }
         //scores_m.DownloadHighScores();
 
     }
