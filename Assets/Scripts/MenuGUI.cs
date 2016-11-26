@@ -13,9 +13,12 @@ public class MenuGUI : MonoBehaviour {
 
 
     public static GameObject saveScore;
-
+    float infinite_timer = 0;
 
     public InputField input;
+
+
+    public GameObject inf_Drag;
     
 
     // Use this for initialization
@@ -25,7 +28,7 @@ public class MenuGUI : MonoBehaviour {
         //gt = GetComponent<GUIText>();
         //canvas = GameObject.Find("Canvas");
         //input = canvas.GetComponent<InputField>();
-
+        inf_Drag.SetActive(false);
         if (saveScore.GetComponent<ScoresManager>().getUsername() != null)
         {
 
@@ -45,6 +48,22 @@ public class MenuGUI : MonoBehaviour {
             Debug.Log("nothing");
         }
 
+        if(Input.touchCount > 1)
+        {
+            infinite_timer += Time.deltaTime;
+            if (infinite_timer > 10f)
+            {
+                inf_Drag.SetActive(true);
+            }
+        }
+        else
+        {
+            infinite_timer = 0;
+            inf_Drag.SetActive(false);
+        }
+
+
+
     }
 
     void OnGUI()
@@ -56,11 +75,10 @@ public class MenuGUI : MonoBehaviour {
         if (GUI.Button(new Rect(Screen.width / 3.5f, Screen.height / 1.58f, Screen.width / 2.3f, Screen.height / 11), "", btnStyle2))
         {
 
-            
-            
+     
             userName = input.text;
             saveScore.GetComponent<ScoresManager>().setNewUserName(userName);
-            
+        
 
             Application.LoadLevel(1);
         }
