@@ -50,11 +50,11 @@ public class LeaderBoardGUI : MonoBehaviour {
 
     void OnGUI()
     {
-        if (HighScoreList != null)
+        GUI.Label(new Rect(Screen.width / 5.5f, Screen.height / 14f, Screen.width / 6, Screen.width / 6), "LeaderBoards", TextStyle);
+
+        if ((HighScoreList != null) && HighScoreList.Length == 10)
         {
-            GUI.Label(new Rect(Screen.width / 5.5f, Screen.height / 14f, Screen.width / 6, Screen.width / 6), "LeaderBoards", TextStyle);
-
-
+            
             GUI.Label(new Rect(Screen.width / 8f, Screen.height / 6.5f, Screen.width / 6, Screen.width / 6), "Rank    " +
                 "Name" + "      " + "Score",
                 TextStyle2);
@@ -161,7 +161,7 @@ public class LeaderBoardGUI : MonoBehaviour {
 
 
 
-        if (GUI.Button(new Rect(Screen.width / 4, Screen.height / 1.2f, Screen.width / 2, Screen.height / 11), "", btnStyle))
+        if (GUI.Button(new Rect(Screen.width / 4, Screen.height / 1.2f, Screen.width / 2, Screen.height / 9.8f), "", btnStyle))
         {
             //scores_m.setcurScore(0);
             SceneManager.LoadScene(0);

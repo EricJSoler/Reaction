@@ -72,7 +72,7 @@ public class MenuGUI : MonoBehaviour {
         //Title
         GUI.Label(new Rect(Screen.width / 4.5f, Screen.height / 6.6f, Screen.width / 6, Screen.width / 6), "Reaction", TextStyle);
 
-        if (GUI.Button(new Rect(Screen.width / 3.5f, Screen.height / 1.58f, Screen.width / 2.3f, Screen.height / 11), "", btnStyle2))
+        if (GUI.Button(new Rect(Screen.width / 3.5f, Screen.height / 1.5f, Screen.width / 2.3f, Screen.height / 10.5f), "", btnStyle2))
         {
 
      
