@@ -43,7 +43,8 @@ public class ScoresManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+       // PlayerPrefs.DeleteAll();
+
 	}
 
     public int getcurScore()
