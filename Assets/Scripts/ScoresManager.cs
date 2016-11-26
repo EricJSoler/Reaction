@@ -75,7 +75,14 @@ public class ScoresManager : MonoBehaviour {
     }
     public string getUsername()
     {
-        return PlayerPrefs.GetString("Username");
+        if (PlayerPrefs.GetString("Username") == "")
+        {
+            return "unknown";
+        }
+        else
+        {
+            return PlayerPrefs.GetString("Username");
+        }
     }
 
     public void AddNewLeadScore(string user, int score)
@@ -96,7 +103,9 @@ public class ScoresManager : MonoBehaviour {
         }
         else
         {
+            //had errors uploading, potentially beaten high scores?
             Debug.Log("Error uploading " + www.error);
+            saveOfflineScore(score);
         }
     }
 
@@ -105,7 +114,23 @@ public class ScoresManager : MonoBehaviour {
         StartCoroutine("DownLoadHighScoresFromDatabase");
     }
 
+    public void saveOfflineScore(int ol_score)
+    {
+        if (ol_score > PlayerPrefs.GetInt("ErrorScore"))
+        {
+            PlayerPrefs.SetInt("ErrorScore", ol_score);
+        }
+    }
 
+    public void setOfflineScoreToZero()
+    {
+        PlayerPrefs.SetInt("ErrorScore", 0);
+    }
+
+    public int getOfflineScore()
+    {
+        return PlayerPrefs.GetInt("ErrorScore");
+    }
 
     IEnumerator DownLoadHighScoresFromDatabase()
     {

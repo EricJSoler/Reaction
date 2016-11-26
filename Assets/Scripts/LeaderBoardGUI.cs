@@ -157,6 +157,11 @@ public class LeaderBoardGUI : MonoBehaviour {
 
 
         }
+        else
+        {
+            GUI.Label(new Rect(Screen.width / 4.5f, Screen.height / 5.8f, Screen.width / 6, Screen.width / 6), " device is offline",
+                TextStyle2);
+        }
 
 
 
