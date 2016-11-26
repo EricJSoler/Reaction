@@ -29,6 +29,7 @@ public class GameGUI : MonoBehaviour {
     private bool timeUp;
     private bool gameOver;
     private bool startGame;
+    bool once = false;
 
     public SpriteRenderer blurRenderer;
     public SpriteRenderer tapRenderer;
@@ -40,6 +41,8 @@ public class GameGUI : MonoBehaviour {
         timeUp = false;
         gameOver = false;
         startGame = false;
+        once = false;
+
         textDisplay();
         time = 30.0f;
         roundTime = 30;
@@ -73,9 +76,13 @@ public class GameGUI : MonoBehaviour {
 
     void OnGUI()
     {
-        if (!startGame)
+        if (startGame)
         {
-            fadeOut();
+            if (!once)
+            {
+                fadeOut();
+                once = true;
+            }
             //GUI.Label(new Rect(Screen.width / 4.8f, Screen.height / 2, Screen.width / 12, Screen.width / 12), "Tap to start!", TextStyle);
         }
 
@@ -190,6 +197,7 @@ public class GameGUI : MonoBehaviour {
     public void fadeOut()
     {
         StartCoroutine(fadeOutTxt());
+        
     }
 
     private IEnumerator fadeOutTxt()
@@ -209,6 +217,8 @@ public class GameGUI : MonoBehaviour {
             currentTime += Time.deltaTime;
             yield return null;
         }
+        tutRenderer.GetComponent<Renderer>().enabled = false;
+        blurRenderer.GetComponent<Renderer>().enabled = false;
         yield break;
     }
 }
