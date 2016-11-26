@@ -28,15 +28,21 @@ public class GameGUI : MonoBehaviour {
     public GameObject saveScore;
     private bool timeUp;
     private bool gameOver;
+    private bool startGame;
+
+    public SpriteRenderer blurRenderer;
+    public SpriteRenderer tapRenderer;
+    public SpriteRenderer tutRenderer;
 
     // Use this for initialization
     void Start () {
 
         timeUp = false;
         gameOver = false;
+        startGame = false;
         textDisplay();
-        
-
+        time = 30.0f;
+        roundTime = 30;
 
     }
 	
@@ -45,19 +51,21 @@ public class GameGUI : MonoBehaviour {
 
         TextStyle.fontSize = (int)(180.0f * (float)(Screen.width) / 1920.0f); //scale size font
 
-        if (!gameOver)
+        if (!gameOver && startGame)
         {
             time -= Time.deltaTime;
             //multTime = time * 10;
             roundTime = (int)time;
             displayTime = roundTime / 10;
+
+            if (roundTime <= 0.0f)
+            {
+                timeUp = true;
+                //Application.LoadLevel(1);
+            }
         }
 
-        if(roundTime <= 0.0f)
-        {
-            timeUp = true;
-            //Application.LoadLevel(1);
-        }
+      
 
         float t = Mathf.PingPong(Time.time, duration);
         
@@ -65,6 +73,11 @@ public class GameGUI : MonoBehaviour {
 
     void OnGUI()
     {
+        if (!startGame)
+        {
+            fadeOut();
+            //GUI.Label(new Rect(Screen.width / 4.8f, Screen.height / 2, Screen.width / 12, Screen.width / 12), "Tap to start!", TextStyle);
+        }
 
         GUI.Label(new Rect(Screen.width / 15, Screen.height / 20, Screen.width / 12, Screen.width / 12), score.ToString(), TextStyle);
 
@@ -78,6 +91,11 @@ public class GameGUI : MonoBehaviour {
         }
         textDisplay();
 
+    }
+
+    public void setStart(bool inStart)
+    {
+        startGame = inStart;
     }
 
     public void setScore(int inScore)
@@ -166,5 +184,31 @@ public class GameGUI : MonoBehaviour {
                 blueB_Text.SetActive(false);
             }
         }
+    }
+
+
+    public void fadeOut()
+    {
+        StartCoroutine(fadeOutTxt());
+    }
+
+    private IEnumerator fadeOutTxt()
+    {
+        float duration = .4f;
+        float currentTime = 0f;
+
+        float oldAlpha = 1.0f;
+        float finalAlpha = 0.0f;
+
+        while (currentTime < duration)
+        {
+            float alpha = Mathf.Lerp(oldAlpha, finalAlpha, currentTime / duration);
+            blurRenderer.color = new Color(blurRenderer.color.r, blurRenderer.color.g, blurRenderer.color.b, alpha);
+            //tapRenderer.color = new Color(blurRenderer.color.r, blurRenderer.color.g, blurRenderer.color.b, alpha);
+            tutRenderer.color = new Color(tutRenderer.color.r, tutRenderer.color.g, tutRenderer.color.b, alpha);
+            currentTime += Time.deltaTime;
+            yield return null;
+        }
+        yield break;
     }
 }
