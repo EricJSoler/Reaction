@@ -169,7 +169,7 @@ public class LeaderBoardGUI : MonoBehaviour {
         if (GUI.Button(new Rect(Screen.width / 4, Screen.height / 1.2f, Screen.width / 2, Screen.height / 9.8f), "", btnStyle))
         {
             //scores_m.setcurScore(0);
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(1);
         }
 
 

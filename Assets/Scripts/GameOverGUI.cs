@@ -80,10 +80,10 @@ public class GameOverGUI : MonoBehaviour
     void OnGUI()
     {
 
-        GUI.Label(new Rect(Screen.width / 4.2f, Screen.height / 5.25f, Screen.width / 6, Screen.width / 6), "score: ", TextStyle);
+        GUI.Label(new Rect(Screen.width / 4.2f, Screen.height / 5.25f, Screen.width / 6, Screen.width / 6), "Score: ", TextStyle);
         GUI.Label(new Rect(Screen.width / 1.8f, Screen.height / 5.25f, Screen.width / 6, Screen.width / 6), curScore.ToString(), TextStyle);
 
-        GUI.Label(new Rect(Screen.width / 4.2f, Screen.height / 3.5f, Screen.width / 6, Screen.width / 6), "best: ", TextStyle);
+        GUI.Label(new Rect(Screen.width / 4.2f, Screen.height / 3.5f, Screen.width / 6, Screen.width / 6), "Best: ", TextStyle);
 
         GUI.Label(new Rect(Screen.width / 1.8f, Screen.height / 3.5f, Screen.width / 6, Screen.width / 6), 
             scores_m.getHighScore().ToString()
@@ -109,23 +109,23 @@ public class GameOverGUI : MonoBehaviour
         //GUI.Label(new Rect(Screen.width / 4.2f, Screen.height / 1.3f, Screen.width / 6, Screen.width / 6), "name test: " + scores_m.getUsername().ToString(), TextStyle2);
 
         //GUI.Label(new Rect(10, 10, 100, 40), "GameOver");
-        if (GUI.Button(new Rect(Screen.width / 4, Screen.height / 2f, Screen.width / 2, Screen.height / 10.2f), "", btnStyle))
+        if (GUI.Button(new Rect(Screen.width / 4, Screen.height / 1.73f, Screen.width / 2, Screen.height / 10.2f), "", btnStyle))
+        {
+            scores_m.setcurScore(0);
+            SceneManager.LoadScene(2);
+        }
+
+        
+        if (GUI.Button(new Rect(Screen.width / 4, Screen.height / 1.45f, Screen.width / 2, Screen.height / 10.2f), "", btnStyle2))
         {
             scores_m.setcurScore(0);
             SceneManager.LoadScene(1);
         }
 
-        
-        if (GUI.Button(new Rect(Screen.width / 4, Screen.height / 1.58f, Screen.width / 2, Screen.height / 10.2f), "", btnStyle2))
-        {
-            scores_m.setcurScore(0);
-            SceneManager.LoadScene(0);
-        }
-
-        if (GUI.Button(new Rect(Screen.width / 4, Screen.height / 1.30f, Screen.width / 2, Screen.height / 10.2f), "", btnStyle3))
+        if (GUI.Button(new Rect(Screen.width / 4, Screen.height / 1.245f, Screen.width / 2, Screen.height / 10.2f), "", btnStyle3))
         {
             //scores_m.setcurScore(0);
-            SceneManager.LoadScene(3);
+            SceneManager.LoadScene(4);
         }
 
 
