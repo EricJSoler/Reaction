@@ -294,7 +294,7 @@ public class GameManager : MonoBehaviour {
         
         //save score, then load next scene
         saveScore.GetComponent<ScoresManager>().setcurScore(gameGUI.getScore());
-        Application.LoadLevel(2);
+        Application.LoadLevel(3);
     }
 
 

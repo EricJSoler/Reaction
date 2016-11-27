@@ -29,9 +29,13 @@ public class MenuGUI : MonoBehaviour {
         //canvas = GameObject.Find("Canvas");
         //input = canvas.GetComponent<InputField>();
         inf_Drag.SetActive(false);
-        if (saveScore.GetComponent<ScoresManager>().getUsername() != null)
-        {
 
+        if (saveScore.GetComponent<ScoresManager>().getUsername() == "unknown")
+        {
+            input.text = "";
+        }
+        else
+        {
             input.text = saveScore.GetComponent<ScoresManager>().getUsername();
         }
     }
@@ -80,7 +84,7 @@ public class MenuGUI : MonoBehaviour {
             saveScore.GetComponent<ScoresManager>().setNewUserName(userName);
         
 
-            Application.LoadLevel(1);
+            Application.LoadLevel(2);
         }
 
         
