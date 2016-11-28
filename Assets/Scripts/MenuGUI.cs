@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(AudioSource))]
 public class MenuGUI : MonoBehaviour {
 
     public GUIStyle TextStyle;
@@ -19,7 +20,12 @@ public class MenuGUI : MonoBehaviour {
 
 
     public GameObject inf_Drag;
-    
+
+    //public AudioClip impact;
+    AudioSource audio;
+
+
+
 
     // Use this for initialization
     void Start () {
@@ -29,6 +35,8 @@ public class MenuGUI : MonoBehaviour {
         //canvas = GameObject.Find("Canvas");
         //input = canvas.GetComponent<InputField>();
         inf_Drag.SetActive(false);
+
+        audio = GetComponent<AudioSource>();
 
         if (saveScore.GetComponent<ScoresManager>().getUsername() == "unknown")
         {
@@ -58,6 +66,8 @@ public class MenuGUI : MonoBehaviour {
             if (infinite_timer > 10f)
             {
                 inf_Drag.SetActive(true);
+                //audio.Play();
+                //audio.Play(44100);
             }
         }
         else
@@ -74,7 +84,7 @@ public class MenuGUI : MonoBehaviour {
     {
 
         //Title
-        GUI.Label(new Rect(Screen.width / 4.5f, Screen.height / 6.6f, Screen.width / 6, Screen.width / 6), "Reaction", TextStyle);
+        //GUI.Label(new Rect(Screen.width / 4.5f, Screen.height / 6.6f, Screen.width / 6, Screen.width / 6), "Reaction", TextStyle);
 
         if (GUI.Button(new Rect(Screen.width / 3.5f, Screen.height / 1.5f, Screen.width / 2.3f, Screen.height / 10.5f), "", btnStyle2))
         {
