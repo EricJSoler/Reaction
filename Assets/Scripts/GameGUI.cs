@@ -19,6 +19,7 @@ public class GameGUI : MonoBehaviour {
 
     public GUIStyle RedBlueStyle;
     public GUIStyle TextStyle;
+    public GUIStyle TextStyle2;
 
     public GameObject redR_Text;
     public GameObject redB_Text;
@@ -55,7 +56,8 @@ public class GameGUI : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        TextStyle.fontSize = (int)(180.0f * (float)(Screen.width) / 1920.0f); //scale size font
+        TextStyle.fontSize = (int)(130.0f * (float)(Screen.width) / 1920.0f); //scale size font
+        TextStyle2.fontSize = (int)(70.0f * (float)(Screen.width) / 1920.0f); //scale size font
 
         if (!gameOver && startGame)
         {
@@ -74,7 +76,7 @@ public class GameGUI : MonoBehaviour {
       
 
         float t = Mathf.PingPong(Time.time, duration);
-        fadeInTut();
+        //fadeInTut();
     }
 
     void OnGUI()
@@ -89,16 +91,40 @@ public class GameGUI : MonoBehaviour {
             //GUI.Label(new Rect(Screen.width / 4.8f, Screen.height / 2, Screen.width / 12, Screen.width / 12), "Tap to start!", TextStyle);
         }
 
-        GUI.Label(new Rect(Screen.width / 15, Screen.height / 20, Screen.width / 12, Screen.width / 12), score.ToString(), TextStyle);
+        //score + time text display
+        //score
+        GUI.Label(new Rect(Screen.width / 15, Screen.height / 38, Screen.width / 12, Screen.width / 12), "Score", TextStyle2);
+        //time
+        GUI.Label(new Rect(Screen.width - Screen.width / 6.0f, Screen.height / 38, Screen.width / 12, Screen.width / 12), "Time", TextStyle2);
+
+
+        //display score number
+        //GUI.Label(new Rect(Screen.width / 12, Screen.height / 15, Screen.width / 12, Screen.width / 12), score.ToString(), TextStyle);
+
+
+        //GUI.Label(new Rect(Screen.width / 15, Screen.height / 20, Screen.width / 12, Screen.width / 12), score.ToString(), TextStyle);
 
         if (roundTime < 10)
         {
-            GUI.Label(new Rect(Screen.width - Screen.width / 7.3f, Screen.height / 20, Screen.width / 12, Screen.width / 12), roundTime.ToString(), TextStyle);
+            GUI.Label(new Rect(Screen.width - Screen.width / 7.3f, Screen.height / 15, Screen.width / 12, Screen.width / 12), roundTime.ToString(), TextStyle);
         }
         else
         {
-            GUI.Label(new Rect(Screen.width - Screen.width / 6.0f, Screen.height / 20, Screen.width / 12, Screen.width / 12), roundTime.ToString(), TextStyle);
+            GUI.Label(new Rect(Screen.width - Screen.width / 6.0f, Screen.height / 15, Screen.width / 12, Screen.width / 12), roundTime.ToString(), TextStyle);
         }
+
+        if (score > 9)
+        {
+            GUI.Label(new Rect(Screen.width / 14, Screen.height / 15, Screen.width / 12, Screen.width / 12), score.ToString(), TextStyle);
+        }
+        else
+        {
+            GUI.Label(new Rect(Screen.width / 12, Screen.height / 15, Screen.width / 12, Screen.width / 12), score.ToString(), TextStyle);
+        }
+
+
+
+
         textDisplay();
 
     }
@@ -223,15 +249,15 @@ public class GameGUI : MonoBehaviour {
             blurRenderer.color = new Color(blurRenderer.color.r, blurRenderer.color.g, blurRenderer.color.b, alpha);
             //tapRenderer.color = new Color(blurRenderer.color.r, blurRenderer.color.g, blurRenderer.color.b, alpha);
             tutRenderer.color = new Color(tutRenderer.color.r, tutRenderer.color.g, tutRenderer.color.b, alpha);
-            tutLighttxt.color = new Color(blurRenderer.color.r, blurRenderer.color.g, blurRenderer.color.b, alpha);
-            tutRighttxt.color = new Color(tutRenderer.color.r, tutRenderer.color.g, tutRenderer.color.b, alpha);
+            //tutLighttxt.color = new Color(blurRenderer.color.r, blurRenderer.color.g, blurRenderer.color.b, alpha);
+            //tutRighttxt.color = new Color(tutRenderer.color.r, tutRenderer.color.g, tutRenderer.color.b, alpha);
             currentTime += Time.deltaTime;
             yield return null;
         }
         tutRenderer.GetComponent<Renderer>().enabled = false;
         blurRenderer.GetComponent<Renderer>().enabled = false;
-        tutLighttxt.GetComponent<Renderer>().enabled = false;
-        tutRighttxt.GetComponent<Renderer>().enabled = false;
+        //tutLighttxt.GetComponent<Renderer>().enabled = false;
+        //tutRighttxt.GetComponent<Renderer>().enabled = false;
         yield break;
     }
 
@@ -246,8 +272,8 @@ public class GameGUI : MonoBehaviour {
         while (currentTime < duration)
         {
             float alpha = Mathf.Lerp(oldAlpha, finalAlpha, currentTime / duration);
-            tutLighttxt.color = new Color(blurRenderer.color.r, blurRenderer.color.g, blurRenderer.color.b, alpha);
-            tutRighttxt.color = new Color(tutRenderer.color.r, tutRenderer.color.g, tutRenderer.color.b, alpha);
+            //tutLighttxt.color = new Color(blurRenderer.color.r, blurRenderer.color.g, blurRenderer.color.b, alpha);
+            //tutRighttxt.color = new Color(tutRenderer.color.r, tutRenderer.color.g, tutRenderer.color.b, alpha);
             currentTime += Time.deltaTime;
             yield return null;
         }
