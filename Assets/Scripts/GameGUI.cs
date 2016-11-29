@@ -106,7 +106,7 @@ public class GameGUI : MonoBehaviour {
 
         if (roundTime < 10)
         {
-            GUI.Label(new Rect(Screen.width - Screen.width / 7.3f, Screen.height / 15, Screen.width / 12, Screen.width / 12), roundTime.ToString(), TextStyle);
+            GUI.Label(new Rect(Screen.width - Screen.width / 7.5f, Screen.height / 15, Screen.width / 12, Screen.width / 12), roundTime.ToString(), TextStyle);
         }
         else
         {
@@ -115,7 +115,7 @@ public class GameGUI : MonoBehaviour {
 
         if (score > 9)
         {
-            GUI.Label(new Rect(Screen.width / 14, Screen.height / 15, Screen.width / 12, Screen.width / 12), score.ToString(), TextStyle);
+            GUI.Label(new Rect(Screen.width / 14.5f, Screen.height / 15, Screen.width / 12, Screen.width / 12), score.ToString(), TextStyle);
         }
         else
         {
