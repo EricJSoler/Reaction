@@ -13,6 +13,9 @@ public class LeaderBoardGUI : MonoBehaviour {
     public GUIStyle btnStyle;
     bool once = false;
 
+    float rankWidth = 10f;
+    float nameWidth = 3.5f;
+
     void Awake()
     {
         saveScore = GameObject.Find("ScoreSave");
@@ -35,7 +38,7 @@ public class LeaderBoardGUI : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         TextStyle.fontSize = (int)(176.0f * (float)(Screen.width) / 1920.0f); //scale size font
-        TextStyle2.fontSize = (int)(128.0f * (float)(Screen.width) / 1920.0f); //scale size font
+        TextStyle2.fontSize = (int)(90.0f * (float)(Screen.width) / 1920.0f); //scale size font
 
         if (scores_m.arReady())
         {
@@ -55,47 +58,65 @@ public class LeaderBoardGUI : MonoBehaviour {
         if ((HighScoreList != null) && HighScoreList.Length == 10)
         {
             
-            GUI.Label(new Rect(Screen.width / 8f, Screen.height / 6.5f, Screen.width / 6, Screen.width / 6), "Rank    " +
-                "Name" + "      " + "Score",
+            GUI.Label(new Rect(Screen.width / 12, Screen.height / 6.5f, Screen.width / 6, Screen.width / 6), "Rank", TextStyle2);
+            GUI.Label(new Rect(Screen.width / nameWidth, Screen.height / 6.5f, Screen.width / 6, Screen.width / 6), "Name", TextStyle2);
+            GUI.Label(new Rect(Screen.width / 1.3f, Screen.height / 6.5f, Screen.width / 6, Screen.width / 6), "Score", TextStyle2);
+
+
+
+            GUI.Label(new Rect(Screen.width / rankWidth, Screen.height / 4.8f, Screen.width / 6, Screen.width / 6), "1.",
                 TextStyle2);
 
-            GUI.Label(new Rect(Screen.width / 5.5f, Screen.height / 5f, Screen.width / 6, Screen.width / 6), "1.     " +
-                HighScoreList[0].userName,
-                TextStyle2);
-            GUI.Label(new Rect(Screen.width / 1.3f, Screen.height / 5f, Screen.width / 6, Screen.width / 6), HighScoreList[0].score.ToString(),
+            GUI.Label(new Rect(Screen.width / nameWidth, Screen.height / 4.8f, Screen.width / 6, Screen.width / 6), HighScoreList[0].userName,
                 TextStyle2);
 
-
-
-
-
-
-            GUI.Label(new Rect(Screen.width / 5.5f, Screen.height / 3.8f, Screen.width / 6, Screen.width / 6), "2.     " +
-                HighScoreList[1].userName,
+            GUI.Label(new Rect(Screen.width / 1.3f, Screen.height / 4.8f, Screen.width / 6, Screen.width / 6), HighScoreList[0].score.ToString(),
                 TextStyle2);
+
+
+
+
+
+
+            GUI.Label(new Rect(Screen.width / rankWidth, Screen.height / 3.8f, Screen.width / 6, Screen.width / 6), "2.",
+                TextStyle2);
+
+            GUI.Label(new Rect(Screen.width / nameWidth, Screen.height / 3.8f, Screen.width / 6, Screen.width / 6), HighScoreList[1].userName,
+                TextStyle2);
+
             GUI.Label(new Rect(Screen.width / 1.3f, Screen.height / 3.8f, Screen.width / 6, Screen.width / 6), HighScoreList[1].score.ToString(),
                 TextStyle2);
 
 
 
 
-            GUI.Label(new Rect(Screen.width / 5.5f, Screen.height / 3.1f, Screen.width / 6, Screen.width / 6), "3.     " +
-                HighScoreList[2].userName,
+            GUI.Label(new Rect(Screen.width / rankWidth, Screen.height / 3.1f, Screen.width / 6, Screen.width / 6), "3.",
                 TextStyle2);
+
+            GUI.Label(new Rect(Screen.width / nameWidth, Screen.height / 3.1f, Screen.width / 6, Screen.width / 6), HighScoreList[2].userName,
+                TextStyle2);
+
             GUI.Label(new Rect(Screen.width / 1.3f, Screen.height / 3.1f, Screen.width / 6, Screen.width / 6), HighScoreList[2].score.ToString(),
                 TextStyle2);
 
 
 
-            GUI.Label(new Rect(Screen.width / 5.5f, Screen.height / 2.60f, Screen.width / 6, Screen.width / 6), "4.     " +
-                HighScoreList[3].userName,
+            GUI.Label(new Rect(Screen.width / rankWidth, Screen.height / 2.60f, Screen.width / 6, Screen.width / 6), "4.",
                 TextStyle2);
+
+            GUI.Label(new Rect(Screen.width / nameWidth, Screen.height / 2.60f, Screen.width / 6, Screen.width / 6), HighScoreList[3].userName,
+                TextStyle2);
+
             GUI.Label(new Rect(Screen.width / 1.3f, Screen.height / 2.60f, Screen.width / 6, Screen.width / 6), HighScoreList[3].score.ToString(),
                 TextStyle2);
 
 
-            GUI.Label(new Rect(Screen.width / 5.5f, Screen.height / 2.25f, Screen.width / 6, Screen.width / 6), "5.     " +
-                HighScoreList[4].userName,
+
+
+            GUI.Label(new Rect(Screen.width / rankWidth, Screen.height / 2.25f, Screen.width / 6, Screen.width / 6), "5.",
+                TextStyle2);
+
+            GUI.Label(new Rect(Screen.width / nameWidth, Screen.height / 2.25f, Screen.width / 6, Screen.width / 6), HighScoreList[4].userName,
                 TextStyle2);
 
             GUI.Label(new Rect(Screen.width / 1.3f, Screen.height / 2.25f, Screen.width / 6, Screen.width / 6), HighScoreList[4].score.ToString(),
@@ -104,16 +125,23 @@ public class LeaderBoardGUI : MonoBehaviour {
 
 
             //NEW
-            GUI.Label(new Rect(Screen.width / 5.5f, Screen.height / 2.00f, Screen.width / 6, Screen.width / 6), "6.     " +
-             HighScoreList[5].userName,
+            GUI.Label(new Rect(Screen.width / rankWidth, Screen.height / 2.00f, Screen.width / 6, Screen.width / 6), "6.",
              TextStyle2);
+
+            GUI.Label(new Rect(Screen.width / nameWidth, Screen.height / 2.00f, Screen.width / 6, Screen.width / 6), HighScoreList[5].userName,
+                TextStyle2);
 
             GUI.Label(new Rect(Screen.width / 1.3f, Screen.height / 2.00f, Screen.width / 6, Screen.width / 6), HighScoreList[5].score.ToString(),
                 TextStyle2);
 
-            GUI.Label(new Rect(Screen.width / 5.5f, Screen.height / 1.80f, Screen.width / 6, Screen.width / 6), "7.     " +
-           HighScoreList[6].userName,
-           TextStyle2);
+
+
+
+            GUI.Label(new Rect(Screen.width / rankWidth, Screen.height / 1.80f, Screen.width / 6, Screen.width / 6), "7.",
+            TextStyle2);
+
+            GUI.Label(new Rect(Screen.width / nameWidth, Screen.height / 1.80f, Screen.width / 6, Screen.width / 6), HighScoreList[6].userName,
+                TextStyle2);
 
             GUI.Label(new Rect(Screen.width / 1.3f, Screen.height / 1.80f, Screen.width / 6, Screen.width / 6), HighScoreList[6].score.ToString(),
                 TextStyle2);
@@ -121,9 +149,11 @@ public class LeaderBoardGUI : MonoBehaviour {
 
 
 
-            GUI.Label(new Rect(Screen.width / 5.5f, Screen.height / 1.62f, Screen.width / 6, Screen.width / 6), "8.     " +
-        HighScoreList[7].userName,
-        TextStyle2);
+            GUI.Label(new Rect(Screen.width / rankWidth, Screen.height / 1.62f, Screen.width / 6, Screen.width / 6), "8.",
+            TextStyle2);
+
+            GUI.Label(new Rect(Screen.width / nameWidth, Screen.height / 1.62f, Screen.width / 6, Screen.width / 6), HighScoreList[7].userName,
+                TextStyle2);
 
             GUI.Label(new Rect(Screen.width / 1.3f, Screen.height / 1.62f, Screen.width / 6, Screen.width / 6), HighScoreList[7].score.ToString(),
                 TextStyle2);
@@ -135,9 +165,11 @@ public class LeaderBoardGUI : MonoBehaviour {
 
 
 
-            GUI.Label(new Rect(Screen.width / 5.5f, Screen.height / 1.50f, Screen.width / 6, Screen.width / 6), "9.     " +
-    HighScoreList[8].userName,
-    TextStyle2);
+            GUI.Label(new Rect(Screen.width / rankWidth, Screen.height / 1.50f, Screen.width / 6, Screen.width / 6), "9.",
+            TextStyle2);
+
+            GUI.Label(new Rect(Screen.width / nameWidth, Screen.height / 1.50f, Screen.width / 6, Screen.width / 6), HighScoreList[8].userName,
+                TextStyle2);
 
             GUI.Label(new Rect(Screen.width / 1.3f, Screen.height / 1.50f, Screen.width / 6, Screen.width / 6), HighScoreList[8].score.ToString(),
                 TextStyle2);
@@ -148,9 +180,11 @@ public class LeaderBoardGUI : MonoBehaviour {
 
 
 
-            GUI.Label(new Rect(Screen.width / 5.5f, Screen.height / 1.39f, Screen.width / 6, Screen.width / 6), "10.     " +
-    HighScoreList[9].userName,
-    TextStyle2);
+            GUI.Label(new Rect(Screen.width / rankWidth, Screen.height / 1.39f, Screen.width / 6, Screen.width / 6), "10.",
+            TextStyle2);
+
+            GUI.Label(new Rect(Screen.width / nameWidth, Screen.height / 1.39f, Screen.width / 6, Screen.width / 6), HighScoreList[9].userName,
+                TextStyle2);
 
             GUI.Label(new Rect(Screen.width / 1.3f, Screen.height / 1.39f, Screen.width / 6, Screen.width / 6), HighScoreList[9].score.ToString(),
                 TextStyle2);
