@@ -51,7 +51,7 @@ public class GameOverGUI : MonoBehaviour
     {
 
         TextStyle.fontSize = (int)(160.0f * (float)(Screen.width) / 1920.0f); //scale size font
-        TextStyle2.fontSize = (int)(80.0f * (float)(Screen.width) / 1920.0f); //scale size font
+        TextStyle2.fontSize = (int)(100.0f * (float)(Screen.width) / 1920.0f); //scale size font
 
         if (scores_m.arReady())
         {        
@@ -89,19 +89,30 @@ public class GameOverGUI : MonoBehaviour
             scores_m.getHighScore().ToString()
             , TextStyle);
 
-        GUI.Label(new Rect(Screen.width / 8f, Screen.height / 2.63f, Screen.width / 6, Screen.width / 6), "world record: ", TextStyle);
+        GUI.Label(new Rect(Screen.width / 8f, Screen.height / 2.13f, Screen.width / 6, Screen.width / 6), "World Record: ", TextStyle2);
+
+        GUI.Label(new Rect(Screen.width / 8f, Screen.height / 2.43f, Screen.width / 6, Screen.width / 6), "Current Champ: ", TextStyle2);
+
 
         if ((HighScoreList != null))
         {
-            GUI.Label(new Rect(Screen.width / 1.35f, Screen.height / 2.63f, Screen.width / 6, Screen.width / 6),
+            GUI.Label(new Rect(Screen.width / 1.55f, Screen.height / 2.13f, Screen.width / 6, Screen.width / 6),
                 HighScoreList[0].score.ToString()
                 , TextStyle);
+
+            GUI.Label(new Rect(Screen.width / 1.55f, Screen.height / 2.43f, Screen.width / 6, Screen.width / 6),
+                HighScoreList[0].userName.ToString()
+                , TextStyle2);
         }
         else
         {
-            GUI.Label(new Rect(Screen.width / 1.35f, Screen.height / 2.63f, Screen.width / 6, Screen.width / 6),
+            GUI.Label(new Rect(Screen.width / 1.55f, Screen.height / 2.13f, Screen.width / 6, Screen.width / 6),
                 "-"
                 , TextStyle);
+
+            GUI.Label(new Rect(Screen.width / 1.55f, Screen.height / 2.43f, Screen.width / 6, Screen.width / 6),
+                "-"
+                , TextStyle2);
         }
         //GUI.Label(new Rect(Screen.width / 4.2f, Screen.height / 2.8f, Screen.width / 6, Screen.width / 6), "Rank: ", TextStyle);
 
