@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using UnityEngine.Advertisements;
 
 public class GameOverGUI : MonoBehaviour
 {
@@ -27,6 +28,11 @@ public class GameOverGUI : MonoBehaviour
         scores_m = saveScore.GetComponent<ScoresManager>();
         curScore = scores_m.getcurScore();
         once = false;
+
+        if (Advertisement.IsReady())
+        {
+            Advertisement.Show();
+        }
 
     }
     
