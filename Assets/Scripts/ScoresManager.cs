@@ -18,6 +18,7 @@ public class ScoresManager : MonoBehaviour {
     public HighScore[] highScoresList;
     bool arrayReady = false;
 
+    public int SinceAdd;
 
     void Awake()
     {
@@ -29,6 +30,7 @@ public class ScoresManager : MonoBehaviour {
         {
             DontDestroyOnLoad(this);
             instance = this;
+            SinceAdd = 0;
         }
         
     }

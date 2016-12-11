@@ -20,7 +20,7 @@ public class GameOverGUI : MonoBehaviour
 
     int curScore = 0;
 
-    
+    int frequencyOfAdds = 2;
 
     void Awake()
     {
@@ -29,10 +29,14 @@ public class GameOverGUI : MonoBehaviour
         curScore = scores_m.getcurScore();
         once = false;
 
-        if (Advertisement.IsReady())
+        if (scores_m.SinceAdd % frequencyOfAdds == 0)
         {
-            Advertisement.Show();
+            if (Advertisement.IsReady())
+            {
+                Advertisement.Show();
+            }
         }
+        scores_m.SinceAdd++;
 
     }
     
