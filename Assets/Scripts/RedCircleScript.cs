@@ -42,7 +42,7 @@ public class RedCircleScript : MonoBehaviour {
     {
         
         //Instantiate(particleExplosion, this.transform.position, Quaternion.identity);
-        manager.redMove(this.transform);
+        //manager.redMove(this.transform);
     }
 
     public void updatePosition(Vector2 newPosition)

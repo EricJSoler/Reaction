@@ -44,7 +44,7 @@ public class GreenCircleScript : MonoBehaviour
     {
 
         //Instantiate(particleExplosion, this.transform.position, Quaternion.identity);
-        manager.greenMove(this.transform);
+        //manager.greenMove(this.transform);
     }
 
     public void updatePosition(Vector2 newPosition)

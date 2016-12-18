@@ -6,15 +6,17 @@ public class GameManager : MonoBehaviour {
     public GameObject blueDot;
     public GameObject redDot;
     public GameObject greenDot;
+
     CircleScript blueScript;
-    RedCircleScript redScript;
-    GreenCircleScript greenScript;
+    CircleScript redScript;
+    CircleScript greenScript;
 
     private const float COLLIDERRADIUS = 1.85f;
     GameGUI gameGUI;
 
     private int score;
 
+    
 
 
     bool bluered = false;
@@ -95,8 +97,8 @@ public class GameManager : MonoBehaviour {
         X_GameOver.SetActive(false);
         gameOver = false;
         blueScript = blueDot.GetComponent<CircleScript>();
-        redScript = redDot.GetComponent<RedCircleScript>();
-        greenScript = greenDot.GetComponent<GreenCircleScript>();
+        redScript = redDot.GetComponent<CircleScript>();
+        greenScript = greenDot.GetComponent<CircleScript>();
 
 
         gameGUI = FindObjectOfType<GameGUI>();
@@ -105,17 +107,12 @@ public class GameManager : MonoBehaviour {
         saveScore = GameObject.Find("ScoreSave");
 
         generateNewMove();
-        changeDotPosition();
+        //changeDotPosition();
 
     }
 
     // Update is called once per frame
     void Update () {
-
-        while (redScript.getCollision())
-        {
-            //changeDotPosition();
-        }
 
         if ((Input.touchCount > 0) || Input.GetMouseButtonDown(0))
         {
@@ -125,105 +122,56 @@ public class GameManager : MonoBehaviour {
 
         if (gameGUI.getTimeUp())
         {
-            gameFinished();
+            //gameFinished();
         }
 
         if (gameOver)
         {
             cameraRef.setHit(true);
         }
-
-
-    
 	}
 
-    public void blueMove(Transform dotPosition)
+
+    public void DotClicked(string color, Transform dotPosition)
     {
         gameGUI.setStart(startGame);
-        if (turn == blue)
+        if (turn == blue && color == "blue")
         {
             if (!gameOver)
             {
                 score++;
                 gameGUI.setScore(score);
-
-
                 Instantiate(blueExplosion, dotPosition.position, Quaternion.identity);
-
-                //blueScript.changePosition();
-                //redScript.changePosition();
-
                 generateNewMove();
-                changeDotPosition();
+               // changeDotPosition();
             }
         }
-        else
-        {
-            gameOver = true;
-            X_GameOver.SetActive(true);
-            //X_GameOver.transform.position = dotPosition.position;
-            X_GameOver.transform.position = new Vector3(dotPosition.position.x, dotPosition.position.y, -5f);
-
-            StartCoroutine(wait());
-        }
-    }
-
-    public void redMove(Transform dotPosition)
-    {
-        gameGUI.setStart(startGame);
-        if (turn == red)
+        else if (turn == red && color == "red")
         {
             if (!gameOver)
             {
                 score++;
                 gameGUI.setScore(score);
-
-                
                 Instantiate(redExplosion, dotPosition.position, Quaternion.identity);
-
-                //blueScript.changePosition();
-                //redScript.changePosition();
-
-
-
                 generateNewMove();
-                changeDotPosition();
+                //changeDotPosition();
             }
         }
-        else
-        {
-            gameOver = true;
-            X_GameOver.SetActive(true);
-            X_GameOver.transform.position = new Vector3(dotPosition.position.x, dotPosition.position.y, -5f);
-            //gameGUI.setScore(0);
-            StartCoroutine(wait());
-        }
-    }
-
-
-    public void greenMove(Transform dotPosition)
-    {
-        gameGUI.setStart(startGame);
-        if (turn == green)
+        else if (turn == green && color == "green")
         {
             if (!gameOver)
             {
                 score++;
                 gameGUI.setScore(score);
-
-
                 Instantiate(greenExplosion, dotPosition.position, Quaternion.identity);
-
-                //blueScript.changePosition();
-                //redScript.changePosition();
-
                 generateNewMove();
-                changeDotPosition();
+               // changeDotPosition();
             }
         }
         else
         {
             gameOver = true;
+            this.FreezeAllDots();
             X_GameOver.SetActive(true);
             //X_GameOver.transform.position = dotPosition.position;
             X_GameOver.transform.position = new Vector3(dotPosition.position.x, dotPosition.position.y, -5f);
@@ -232,22 +180,14 @@ public class GameManager : MonoBehaviour {
         }
     }
 
+    public void FreezeAllDots()
+    {
+        blueScript.Speed = 0f;
+        redScript.Speed = 0f;
+        greenScript.Speed = 0f;
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
 
 
     public void generateNewMove()
@@ -275,6 +215,132 @@ public class GameManager : MonoBehaviour {
             gameGUI.setTextDisplay(2, colorText);
         }
 
+        this.SpawnAllInMiddle();
+
+    }
+
+    public void SpawnAllInMiddle()
+    {
+        Vector2 midPoint = Camera.main.ScreenToWorldPoint(new Vector2((Screen.width / 2), (Screen.height / 1.1f)/2));
+        redScript.updatePosition(midPoint);
+        blueScript.updatePosition(midPoint);
+        greenScript.updatePosition(midPoint);
+
+        float speedAdj = redScript.Speed * .04f;
+
+        this.SendDotsInRandomDirectinonsAwayFromEachother();
+        
+        redScript.Speed += speedAdj;
+        blueScript.Speed += speedAdj;
+        greenScript.Speed += speedAdj;
+    }
+
+    public void SendDotsInRandomDirectinonsAwayFromEachother()
+    {
+        int combo = Random.Range(0, 17);
+
+
+        //Cwxr
+        Vector2 topLeft = new Vector2(-1, 1);
+        Vector2 topRight = new Vector2(1, 1);
+        Vector2 bottomLeft = new Vector2(-1, -1);
+        Vector2 bottomRight = new Vector2(1, -1);
+
+        switch (combo)
+        {
+            case 0:
+                blueScript.SetDirection(topLeft); //tl
+                redScript.SetDirection(topRight); //tr
+                greenScript.SetDirection(bottomLeft); //br
+                break;
+            case 1:
+                blueScript.SetDirection(topLeft); //tl
+                redScript.SetDirection(topRight); 
+                greenScript.SetDirection(bottomRight);
+                break;
+            case 2:
+                blueScript.SetDirection(topRight); 
+                redScript.SetDirection(bottomRight);
+                greenScript.SetDirection(bottomLeft);
+                break;
+            case 3:
+                blueScript.SetDirection(topRight); 
+                redScript.SetDirection(bottomLeft); 
+                greenScript.SetDirection(bottomRight);
+                break;
+            case 4:
+                blueScript.SetDirection(topLeft);
+                redScript.SetDirection(bottomLeft);
+                greenScript.SetDirection(topRight);
+                break;
+            case 5:
+                blueScript.SetDirection(topLeft);
+                redScript.SetDirection(bottomRight);
+                greenScript.SetDirection(topRight);
+                break;
+            case 6:
+                blueScript.SetDirection(topRight);
+                redScript.SetDirection(topLeft);
+                greenScript.SetDirection(bottomLeft);
+                break;
+            case 7:
+                blueScript.SetDirection(topRight);
+                redScript.SetDirection(topLeft);
+                greenScript.SetDirection(bottomRight);
+                break;
+            case 8:
+                blueScript.SetDirection(bottomRight);
+                redScript.SetDirection(topLeft);
+                greenScript.SetDirection(bottomLeft);
+                break;
+            case 9:
+                blueScript.SetDirection(bottomLeft);
+                redScript.SetDirection(topLeft);
+                greenScript.SetDirection(bottomRight);
+                break;
+            case 10:
+                blueScript.SetDirection(bottomLeft);
+                redScript.SetDirection(topLeft);
+                greenScript.SetDirection(bottomRight);
+                break;
+            case 11:
+                blueScript.SetDirection(bottomLeft);
+                redScript.SetDirection(topLeft);
+                greenScript.SetDirection(topRight);
+                break;
+            case 12:
+                blueScript.SetDirection(topRight);
+                redScript.SetDirection(bottomRight);
+                greenScript.SetDirection(topLeft);
+                break;
+            case 13:
+                blueScript.SetDirection(topRight);
+                redScript.SetDirection(bottomLeft);
+                greenScript.SetDirection(topLeft);
+                break;
+            case 14:
+                blueScript.SetDirection(bottomLeft);
+                redScript.SetDirection(topRight);
+                greenScript.SetDirection(topLeft);
+                break;
+            case 15:
+                blueScript.SetDirection(bottomRight);
+                redScript.SetDirection(topRight);
+                greenScript.SetDirection(topLeft);
+                break;
+            case 16:
+                blueScript.SetDirection(bottomRight);
+                redScript.SetDirection(bottomLeft);
+                greenScript.SetDirection(topLeft);
+                break;
+            case 17:
+                blueScript.SetDirection(bottomLeft);
+                redScript.SetDirection(bottomRight);
+                greenScript.SetDirection(topLeft);
+                break;
+            default: Debug.Log("You fucked up");
+                break;
+        }
     }
 
     public void changeDotPosition()
@@ -329,5 +395,145 @@ public class GameManager : MonoBehaviour {
         Application.LoadLevel(3);
     }
 
+    public void EscapedScreen(string color)
+    {
+        if (turn == blue && color == "blue")
+        {
+            gameFinished();
+        }
+        else if (turn == red && color == "red")
+        {
+            gameFinished();
+        }
+        else if (turn == green && color == "green")
+            gameFinished();
+    }
 
+    //    if (turn == blue)
+    //    {
+    //        if (!gameOver)
+    //        {
+    //            score++;
+    //            gameGUI.setScore(score);
+
+
+    //            Instantiate(blueExplosion, dotPosition.position, Quaternion.identity);
+
+    //            //blueScript.changePosition();
+    //            //redScript.changePosition();
+
+    //            generateNewMove();
+    //            changeDotPosition();
+    //        }
+    //    }
+    //    else
+    //    {
+    //        gameOver = true;
+    //        X_GameOver.SetActive(true);
+    //        //X_GameOver.transform.position = dotPosition.position;
+    //        X_GameOver.transform.position = new Vector3(dotPosition.position.x, dotPosition.position.y, -5f);
+
+    //        StartCoroutine(wait());
+    //    }
+    //}
+
+
+    ////deprecated
+    //    public void blueMove(Transform dotPosition)
+    //    {
+    //        gameGUI.setStart(startGame);
+    //        if (turn == blue)
+    //        {
+    //            if (!gameOver)
+    //            {
+    //                score++;
+    //                gameGUI.setScore(score);
+
+
+    //                Instantiate(blueExplosion, dotPosition.position, Quaternion.identity);
+
+    //                //blueScript.changePosition();
+    //                //redScript.changePosition();
+
+    //                generateNewMove();
+    //                changeDotPosition();
+    //            }
+    //        }
+    //        else
+    //        {
+    //            gameOver = true;
+    //            X_GameOver.SetActive(true);
+    //            //X_GameOver.transform.position = dotPosition.position;
+    //            X_GameOver.transform.position = new Vector3(dotPosition.position.x, dotPosition.position.y, -5f);
+
+    //            StartCoroutine(wait());
+    //        }
+    //    }
+
+    ////deprecated
+    //    public void redMove(Transform dotPosition)
+    //    {
+    //        gameGUI.setStart(startGame);
+    //        if (turn == red)
+    //        {
+    //            if (!gameOver)
+    //            {
+    //                score++;
+    //                gameGUI.setScore(score);
+
+    
+    //                Instantiate(redExplosion, dotPosition.position, Quaternion.identity);
+
+    //                //blueScript.changePosition();
+    //                //redScript.changePosition();
+
+
+
+    //                generateNewMove();
+    //                changeDotPosition();
+    //            }
+    //        }
+    //        else
+    //        {
+    //            gameOver = true;
+    //            X_GameOver.SetActive(true);
+    //            X_GameOver.transform.position = new Vector3(dotPosition.position.x, dotPosition.position.y, -5f);
+    //            //gameGUI.setScore(0);
+    //            StartCoroutine(wait());
+    //        }
+    //    }
+
+    ////deprecated
+    //    public void greenMove(Transform dotPosition)
+    //    {
+    //        gameGUI.setStart(startGame);
+    //        if (turn == green)
+    //        {
+    //            if (!gameOver)
+    //            {
+    //                score++;
+    //                gameGUI.setScore(score);
+
+
+    //                Instantiate(greenExplosion, dotPosition.position, Quaternion.identity);
+
+    //                //blueScript.changePosition();
+    //                //redScript.changePosition();
+
+    //                generateNewMove();
+    //                changeDotPosition();
+    //            }
+    //        }
+    //        else
+    //        {
+    //            gameOver = true;
+    //            X_GameOver.SetActive(true);
+    //            //X_GameOver.transform.position = dotPosition.position;
+    //            X_GameOver.transform.position = new Vector3(dotPosition.position.x, dotPosition.position.y, -5f);
+
+    //            StartCoroutine(wait());
+    //        }
+    //    }
 }
+
+
