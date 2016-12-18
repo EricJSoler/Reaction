@@ -5,21 +5,34 @@ public class GameManager : MonoBehaviour {
 
     public GameObject blueDot;
     public GameObject redDot;
+    public GameObject greenDot;
     CircleScript blueScript;
     RedCircleScript redScript;
-
+    GreenCircleScript greenScript;
 
     private const float COLLIDERRADIUS = 1.85f;
     GameGUI gameGUI;
 
     private int score;
+
+
+
     bool bluered = false;
+
+    int blue = 0;
+    int red = 1;
+    int green = 2;
+    int turn = 0;
+
+
+
     private int blueredInt = 0;
     private int colorText = 0;
 
     public GameObject crumpled;
     public GameObject blueExplosion;
     public GameObject redExplosion;
+    public GameObject greenExplosion;
     public GameObject X_GameOver;
     public static GameObject saveScore;
     bool gameOver = false;
@@ -27,9 +40,6 @@ public class GameManager : MonoBehaviour {
 
     public Animation anim;
 
-
-    Transform red;
-    Transform blue;
 
     bool startGame = false;
 
@@ -86,6 +96,9 @@ public class GameManager : MonoBehaviour {
         gameOver = false;
         blueScript = blueDot.GetComponent<CircleScript>();
         redScript = redDot.GetComponent<RedCircleScript>();
+        greenScript = greenDot.GetComponent<GreenCircleScript>();
+
+
         gameGUI = FindObjectOfType<GameGUI>();
         gameGUI.setScore(0);
 
@@ -103,8 +116,6 @@ public class GameManager : MonoBehaviour {
         {
             //changeDotPosition();
         }
-
-
 
         if ((Input.touchCount > 0) || Input.GetMouseButtonDown(0))
         {
@@ -129,7 +140,7 @@ public class GameManager : MonoBehaviour {
     public void blueMove(Transform dotPosition)
     {
         gameGUI.setStart(startGame);
-        if (bluered)
+        if (turn == blue)
         {
             if (!gameOver)
             {
@@ -154,17 +165,13 @@ public class GameManager : MonoBehaviour {
             X_GameOver.transform.position = new Vector3(dotPosition.position.x, dotPosition.position.y, -5f);
 
             StartCoroutine(wait());
-
         }
-
-        
-
     }
 
     public void redMove(Transform dotPosition)
     {
         gameGUI.setStart(startGame);
-        if (!bluered)
+        if (turn == red)
         {
             if (!gameOver)
             {
@@ -190,30 +197,82 @@ public class GameManager : MonoBehaviour {
             X_GameOver.transform.position = new Vector3(dotPosition.position.x, dotPosition.position.y, -5f);
             //gameGUI.setScore(0);
             StartCoroutine(wait());
-
         }
-        
-
     }
-    
-    public void generateNewMove()
+
+
+    public void greenMove(Transform dotPosition)
     {
-        
-        blueredInt = Random.Range(0, 2);
-
-        colorText = Random.Range(0, 2);
-
-        if (blueredInt == 0)
+        gameGUI.setStart(startGame);
+        if (turn == green)
         {
-            //blue
-            bluered = true;
-            gameGUI.setRedBlueDisplay(true,colorText);
+            if (!gameOver)
+            {
+                score++;
+                gameGUI.setScore(score);
+
+
+                Instantiate(greenExplosion, dotPosition.position, Quaternion.identity);
+
+                //blueScript.changePosition();
+                //redScript.changePosition();
+
+                generateNewMove();
+                changeDotPosition();
+            }
         }
         else
         {
+            gameOver = true;
+            X_GameOver.SetActive(true);
+            //X_GameOver.transform.position = dotPosition.position;
+            X_GameOver.transform.position = new Vector3(dotPosition.position.x, dotPosition.position.y, -5f);
+
+            StartCoroutine(wait());
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public void generateNewMove()
+    {
+        
+        turn = Random.Range(0, 3);
+        colorText = Random.Range(0, 3);
+
+        if (turn == 0)
+        {
+            //blue
+            turn = 0;
+            gameGUI.setTextDisplay(0, colorText);
+        }
+        else if(turn == 1)
+        {
             //red
-            bluered = false;
-            gameGUI.setRedBlueDisplay(false,colorText);
+            turn = 1;
+            gameGUI.setTextDisplay(1, colorText);
+        }
+        else
+        {
+            //green
+            turn = 2;
+            gameGUI.setTextDisplay(2, colorText);
         }
 
     }
@@ -222,9 +281,13 @@ public class GameManager : MonoBehaviour {
     {
         Vector2 bluePosition = createValidPositionInGameBoard(blueScript.radius);
         Vector2 redPosition = createValidPositionInGameBoard(redScript.radius);
+        Vector2 greenPosition = createValidPositionInGameBoard(greenScript.radius);
         blueScript.updatePosition(bluePosition);
         redScript.updatePosition(redPosition);
-        doTheseObjectsOverlap(blueScript.radius, bluePosition, redPosition); // need to update if objects have different radiuses
+        greenScript.updatePosition(greenPosition);
+
+
+        //doTheseObjectsOverlap(blueScript.radius, bluePosition, redPosition); // need to update if objects have different radiuses
         
     }
 

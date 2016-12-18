@@ -1,32 +1,34 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class RedCircleScript : MonoBehaviour {
+public class GreenCircleScript : MonoBehaviour
+{
 
-    public float radius;
-    Vector2 screenPosition;
-    GameManager manager;
-    bool collisionCheck;
     public SpriteRenderer dotRenderer;
+    public float radius;
+    GameManager manager;
+    Vector2 direction = new Vector2();
 
-    float speed = 1f;
+    private float speed = 1f;
 
-    Vector2 direction = new Vector2(); 
+
 
     void Awake()
     {
         manager = FindObjectOfType<GameManager>();
     }
-    void Start()
-    {
-       // manager = FindObjectOfType<GameManager>();
+
+
+    // Use this for initialization
+    void Start () {
         dotRenderer = this.gameObject.GetComponent<SpriteRenderer>();
         radius = this.gameObject.GetComponent<CircleCollider2D>().radius * this.transform.lossyScale.x;
+
     }
+	
+	// Update is called once per frame
+	void Update () {
 
-
-    void Update()
-    {
         if (!manager.worldBound.ObjectInsideWorldBound(this.transform.position, this.radius))
         {
             manager.generateNewMove();
@@ -40,9 +42,9 @@ public class RedCircleScript : MonoBehaviour {
 
     void OnMouseDown()
     {
-        
+
         //Instantiate(particleExplosion, this.transform.position, Quaternion.identity);
-        manager.redMove(this.transform);
+        manager.greenMove(this.transform);
     }
 
     public void updatePosition(Vector2 newPosition)
@@ -52,22 +54,7 @@ public class RedCircleScript : MonoBehaviour {
         this.fadeIn();
     }
 
-    ////deprecating this
-    public void changePosition()
-    {
-        //place dot on a random and new position within the screen boundrys
-        Vector2 temp = Camera.main.ScreenToWorldPoint(new Vector2(Random.Range(0, Screen.width), Random.Range(0, Screen.height)));
-        Vector2 topRightCorner = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
-        Vector2 bottomLeftCorner = Camera.main.ScreenToWorldPoint(new Vector2(0, 0));
-        float x = Mathf.Clamp(temp.x, bottomLeftCorner.x + 1.85f, topRightCorner.x - 1.85f);
-        float y = Mathf.Clamp(temp.y, bottomLeftCorner.y + 1.85f, topRightCorner.y - 1.85f);
-        //screenPosition = Camera.main.ScreenToWorldPoint(new ghctor2(Random.Range(0, Screen.width), Random.Range(0, Screen.height)));
 
-        this.transform.position = new Vector2(x, y);
-
-        fadeIn();
-
-    }
 
     public void ChangeDirection()
     {
@@ -88,11 +75,11 @@ public class RedCircleScript : MonoBehaviour {
 
         if (manager == null)
             Debug.Log("Manager null");
-        else if(manager.worldBound == null)
+        else if (manager.worldBound == null)
         {
             Debug.Log("worldbound null");
         }
-        
+
 
 
         this.direction = new Vector2(x, y);
@@ -122,23 +109,4 @@ public class RedCircleScript : MonoBehaviour {
         }
         yield break;
     }
-
-    void OnCollisionEnter2D(Collision2D coll)
-    {
-        if (coll.gameObject.tag == "Blue")
-        {
-            Debug.Log("hit");
-            collisionCheck = true;
-        }else
-        {
-            collisionCheck = false;
-        }
-
-    }
-
-    public bool getCollision()
-    {
-        return collisionCheck;
-    }
-
 }
