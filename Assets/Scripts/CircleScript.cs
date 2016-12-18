@@ -4,16 +4,12 @@ using System.Collections;
 public class CircleScript : MonoBehaviour {
 
     public float radius;
-
     Vector2 screenPosition;
-    //public GameObject GameManager;
     GameManager manager;
-    public GameObject particleExplosion;
-
     public SpriteRenderer dotRenderer;
 
     private Vector2 direction;
-    private float speed = 2f;
+    private float speed = 1f;
     
     void Start () {
         manager = FindObjectOfType<GameManager>();

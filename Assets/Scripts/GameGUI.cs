@@ -14,17 +14,26 @@ public class GameGUI : MonoBehaviour {
 
     public float duration = 5.0F;
 
-    bool redblueGUI;
+    int readText;
     int textColor;
 
     public GUIStyle RedBlueStyle;
     public GUIStyle TextStyle;
     public GUIStyle TextStyle2;
 
-    public GameObject redR_Text;
-    public GameObject redB_Text;
+
     public GameObject blueR_Text;
     public GameObject blueB_Text;
+    public GameObject blueG_Text;
+
+    public GameObject redR_Text;
+    public GameObject redB_Text;
+    public GameObject redG_Text;
+
+
+    public GameObject greenR_Text;
+    public GameObject greenB_Text;
+    public GameObject greenG_Text;
 
     public GameObject saveScore;
     private bool timeUp;
@@ -32,7 +41,7 @@ public class GameGUI : MonoBehaviour {
     private bool startGame;
     bool once = false;
 
-    public SpriteRenderer blurRenderer;
+    //public SpriteRenderer blurRenderer;
     public SpriteRenderer tapRenderer;
     public SpriteRenderer tutRenderer;
 
@@ -144,9 +153,9 @@ public class GameGUI : MonoBehaviour {
         return score;
     }
 
-    public void setRedBlueDisplay(bool inDot, int inTextColor)
+    public void setTextDisplay(int inDot, int inTextColor)
     {
-        redblueGUI = inDot;
+        readText = inDot;
         textColor = inTextColor;
     }
 
@@ -162,63 +171,174 @@ public class GameGUI : MonoBehaviour {
 
     public void textDisplay()
     {
-        if (redblueGUI)
+        //if blue
+        if (readText == 0)
         {
-            //if blue
             if (textColor == 0)
             {
-                //RedBlueStyle.normal.textColor = Color.blue;
-                //GUI.Label(new Rect(50, 50, TextWidth, 40), "Blue", RedBlueStyle);
-                //Debug.Log("blue, blue");
                 blueB_Text.SetActive(true);
+
+                blueR_Text.SetActive(false);
+                blueG_Text.SetActive(false);
 
                 redR_Text.SetActive(false);
                 redB_Text.SetActive(false);
-                blueR_Text.SetActive(false);
-                //blueB_Text.SetActive(false);
+                redG_Text.SetActive(false);
+
+
+                greenR_Text.SetActive(false);
+                greenB_Text.SetActive(false);
+                greenG_Text.SetActive(false);
+
+
+}
+            else if (textColor == 1)
+            {
+
+                blueB_Text.SetActive(false);
+
+                blueR_Text.SetActive(true);
+                blueG_Text.SetActive(false);
+
+                redR_Text.SetActive(false);
+                redB_Text.SetActive(false);
+                redG_Text.SetActive(false);
+
+
+                greenR_Text.SetActive(false);
+                greenB_Text.SetActive(false);
+                greenG_Text.SetActive(false);
             }
             else
             {
-                //RedBlueStyle.normal.textColor = Color.red;
-                //GUI.Label(new Rect(50, 50, TextWidth, 40), "Blue", RedBlueStyle);
-                //Debug.Log("blue, red");
-                blueR_Text.SetActive(true);
+                blueB_Text.SetActive(false);
+
+                blueR_Text.SetActive(false);
+                blueG_Text.SetActive(true);
 
                 redR_Text.SetActive(false);
                 redB_Text.SetActive(false);
-                //blueR_Text.SetActive(false);
-                blueB_Text.SetActive(false);
+                redG_Text.SetActive(false);
+
+
+                greenR_Text.SetActive(false);
+                greenB_Text.SetActive(false);
+                greenG_Text.SetActive(false);
             }
 
         }
-        else
+        //if red
+        else if (readText == 1)
         {
             //if red
             if (textColor == 0)
             {
-                //RedBlueStyle.normal.textColor = Color.blue;
-                //GUI.Label(new Rect(50, 50, TextWidth, 40), "Red", RedBlueStyle);
-                //Debug.Log("red, blue");
-                redB_Text.SetActive(true);
-
-                redR_Text.SetActive(false);
-                //redB_Text.SetActive(false);
-                blueR_Text.SetActive(false);
                 blueB_Text.SetActive(false);
-            }
-            else
-            {
-                //RedBlueStyle.normal.textColor = Color.red;
-                //GUI.Label(new Rect(50, 50, TextWidth, 40), "Red", RedBlueStyle);
-                //Debug.Log("red, red");
+                blueR_Text.SetActive(false);
+                blueG_Text.SetActive(false);
 
                 redR_Text.SetActive(true);
-
-                //redR_Text.SetActive(false);
                 redB_Text.SetActive(false);
-                blueR_Text.SetActive(false);
-                blueB_Text.SetActive(false);
+                redG_Text.SetActive(false);
+
+
+                greenR_Text.SetActive(false);
+                greenB_Text.SetActive(false);
+                greenG_Text.SetActive(false);
+
             }
+            else if (textColor == 1)
+            {
+                blueB_Text.SetActive(false);
+                blueR_Text.SetActive(false);
+                blueG_Text.SetActive(false);
+
+                redR_Text.SetActive(false);
+                redB_Text.SetActive(true);
+                redG_Text.SetActive(false);
+
+
+                greenR_Text.SetActive(false);
+                greenB_Text.SetActive(false);
+                greenG_Text.SetActive(false);
+            }
+            else if (textColor == 2)
+            {
+                blueB_Text.SetActive(false);
+                blueR_Text.SetActive(false);
+                blueG_Text.SetActive(false);
+
+                redR_Text.SetActive(false);
+                redB_Text.SetActive(false);
+                redG_Text.SetActive(true);
+
+
+                greenR_Text.SetActive(false);
+                greenB_Text.SetActive(false);
+                greenG_Text.SetActive(false);
+
+            }
+        }
+        else if(readText == 2)
+        {
+
+            //if green
+            if (textColor == 0)
+            {
+                blueB_Text.SetActive(false);
+                blueR_Text.SetActive(false);
+                blueG_Text.SetActive(false);
+
+                redR_Text.SetActive(false);
+                redB_Text.SetActive(false);
+                redG_Text.SetActive(false);
+
+
+                greenR_Text.SetActive(false);
+                greenB_Text.SetActive(false);
+                greenG_Text.SetActive(true);
+
+            }
+            else if (textColor == 1)
+            {
+                blueB_Text.SetActive(false);
+                blueR_Text.SetActive(false);
+                blueG_Text.SetActive(false);
+
+                redR_Text.SetActive(false);
+                redB_Text.SetActive(false);
+                redG_Text.SetActive(false);
+
+
+                greenR_Text.SetActive(false);
+                greenB_Text.SetActive(true);
+                greenG_Text.SetActive(false);
+            }
+            else if (textColor == 2)
+            {
+                blueB_Text.SetActive(false);
+                blueR_Text.SetActive(false);
+                blueG_Text.SetActive(false);
+
+                redR_Text.SetActive(false);
+                redB_Text.SetActive(false);
+                redG_Text.SetActive(false);
+
+
+                greenR_Text.SetActive(true);
+                greenB_Text.SetActive(false);
+                greenG_Text.SetActive(false);
+
+            }
+
+
+
+
+
+
+
+
+
         }
     }
 
@@ -246,7 +366,7 @@ public class GameGUI : MonoBehaviour {
         while (currentTime < duration)
         {
             float alpha = Mathf.Lerp(oldAlpha, finalAlpha, currentTime / duration);
-            blurRenderer.color = new Color(blurRenderer.color.r, blurRenderer.color.g, blurRenderer.color.b, alpha);
+            //blurRenderer.color = new Color(blurRenderer.color.r, blurRenderer.color.g, blurRenderer.color.b, alpha);
             //tapRenderer.color = new Color(blurRenderer.color.r, blurRenderer.color.g, blurRenderer.color.b, alpha);
             tutRenderer.color = new Color(tutRenderer.color.r, tutRenderer.color.g, tutRenderer.color.b, alpha);
             //tutLighttxt.color = new Color(blurRenderer.color.r, blurRenderer.color.g, blurRenderer.color.b, alpha);
@@ -255,7 +375,7 @@ public class GameGUI : MonoBehaviour {
             yield return null;
         }
         tutRenderer.GetComponent<Renderer>().enabled = false;
-        blurRenderer.GetComponent<Renderer>().enabled = false;
+        //blurRenderer.GetComponent<Renderer>().enabled = false;
         //tutLighttxt.GetComponent<Renderer>().enabled = false;
         //tutRighttxt.GetComponent<Renderer>().enabled = false;
         yield break;
