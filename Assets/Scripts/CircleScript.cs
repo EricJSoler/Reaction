@@ -56,23 +56,23 @@ public class CircleScript : MonoBehaviour {
     }
 
     //deprecating this and replacing it with move to new position going to let the game manager handle choosing where the circles are placed
-    //public void changePosition()
-    //{
+    public void changePosition()
+    {
 
-    //    ////place dot on a random and new position within the screen boundrys
-    //    ////screenPosition = Camera.main.ScreenToWorldPoint(new Vector2(Random.Range(0, Screen.width), Random.Range(0, Screen.height)));
+        //place dot on a random and new position within the screen boundrys
+        //screenPosition = Camera.main.ScreenToWorldPoint(new Vector2(Random.Range(0, Screen.width), Random.Range(0, Screen.height)));
 
-    //    //Vector2 temp = Camera.main.ScreenToWorldPoint(new Vector2(Random.Range(0, Screen.width), Random.Range(0, Screen.height)));
-    //    //Vector2 topRightCorner = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
-    //    //Vector2 bottomLeftCorner = Camera.main.ScreenToWorldPoint(new Vector2(0, 0));
-    //    //float x = Mathf.Clamp(temp.x, bottomLeftCorner.x + 1.85f, topRightCorner.x - 1.85f);
-    //    //float y = Mathf.Clamp(temp.y, bottomLeftCorner.y + 1.85f, topRightCorner.y - 1.85f);
+        Vector2 temp = Camera.main.ScreenToWorldPoint(new Vector2(Random.Range(0, Screen.width), Random.Range(0, Screen.height)));
+        Vector2 topRightCorner = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
+        Vector2 bottomLeftCorner = Camera.main.ScreenToWorldPoint(new Vector2(0, 0));
+        float x = Mathf.Clamp(temp.x, bottomLeftCorner.x + 1.85f, topRightCorner.x - 1.85f);
+        float y = Mathf.Clamp(temp.y, bottomLeftCorner.y + 1.85f, topRightCorner.y - 1.85f);
 
-    //    //this.transform.position = new Vector2(x, y);
+        this.transform.position = new Vector2(x, y);
 
-    //    //fadeIn();
+        fadeIn();
 
-    //}
+    }
 
     public void ChangeDirection()
     {

@@ -287,7 +287,7 @@ public class GameManager : MonoBehaviour {
         greenScript.updatePosition(greenPosition);
 
 
-        doTheseObjectsOverlap(blueScript.radius, bluePosition, redPosition); // need to update if objects have different radiuses
+        //doTheseObjectsOverlap(blueScript.radius, bluePosition, redPosition); // need to update if objects have different radiuses
         
     }
 

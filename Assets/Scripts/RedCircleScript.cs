@@ -53,21 +53,21 @@ public class RedCircleScript : MonoBehaviour {
     }
 
     ////deprecating this
-    //public void changePosition()
-    //{
-    //    //place dot on a random and new position within the screen boundrys
-    //    Vector2 temp = Camera.main.ScreenToWorldPoint(new Vector2(Random.Range(0, Screen.width), Random.Range(0, Screen.height)));
-    //    Vector2 topRightCorner = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
-    //    Vector2 bottomLeftCorner = Camera.main.ScreenToWorldPoint(new Vector2(0, 0));
-    //    float x = Mathf.Clamp(temp.x, bottomLeftCorner.x + 1.85f, topRightCorner.x - 1.85f);
-    //    float y = Mathf.Clamp(temp.y, bottomLeftCorner.y + 1.85f, topRightCorner.y - 1.85f);
-    //    //screenPosition = Camera.main.ScreenToWorldPoint(new ghctor2(Random.Range(0, Screen.width), Random.Range(0, Screen.height)));
+    public void changePosition()
+    {
+        //place dot on a random and new position within the screen boundrys
+        Vector2 temp = Camera.main.ScreenToWorldPoint(new Vector2(Random.Range(0, Screen.width), Random.Range(0, Screen.height)));
+        Vector2 topRightCorner = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
+        Vector2 bottomLeftCorner = Camera.main.ScreenToWorldPoint(new Vector2(0, 0));
+        float x = Mathf.Clamp(temp.x, bottomLeftCorner.x + 1.85f, topRightCorner.x - 1.85f);
+        float y = Mathf.Clamp(temp.y, bottomLeftCorner.y + 1.85f, topRightCorner.y - 1.85f);
+        //screenPosition = Camera.main.ScreenToWorldPoint(new ghctor2(Random.Range(0, Screen.width), Random.Range(0, Screen.height)));
 
-    //    this.transform.position = new Vector2(x,y);
+        this.transform.position = new Vector2(x, y);
 
-    //    fadeIn();
+        fadeIn();
 
-    //}
+    }
 
     public void ChangeDirection()
     {
