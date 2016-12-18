@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GameManager : MonoBehaviour {
+public class GameManager : MonoBehaviour
+{
 
     public GameObject blueDot;
     public GameObject redDot;
@@ -16,7 +17,7 @@ public class GameManager : MonoBehaviour {
 
     private int score;
 
-    
+
 
 
     bool bluered = false;
@@ -58,7 +59,7 @@ public class GameManager : MonoBehaviour {
                 return false;
             if (loc.x + radius < BottomLeftCoordinate.x)
                 return false;
-            if (loc.y + radius < BottomLeftCoordinate.y) 
+            if (loc.y + radius < BottomLeftCoordinate.y)
                 return false;
             if (loc.y - radius > TopLeftCoordingate.y)
                 return false;
@@ -68,13 +69,13 @@ public class GameManager : MonoBehaviour {
     }
 
     public WorldBound worldBound = new WorldBound();
-    
+
 
 
     void Awake()
     {
         worldBound.BottomLeftCoordinate = Camera.main.ScreenToWorldPoint(new Vector2(0, 0));
-        worldBound.BottomRightCoordinate = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width,0)); 
+        worldBound.BottomRightCoordinate = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, 0));
         worldBound.TopLeftCoordingate = Camera.main.ScreenToWorldPoint(new Vector2(0, Screen.height / 1.1f));
         worldBound.TopRightCoordinate = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height / 1.1f));
 
@@ -86,7 +87,8 @@ public class GameManager : MonoBehaviour {
 
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
 
 
         score = 0;
@@ -112,7 +114,8 @@ public class GameManager : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update () {
+    void Update()
+    {
 
         if ((Input.touchCount > 0) || Input.GetMouseButtonDown(0))
         {
@@ -129,7 +132,7 @@ public class GameManager : MonoBehaviour {
         {
             cameraRef.setHit(true);
         }
-	}
+    }
 
 
     public void DotClicked(string color, Transform dotPosition)
@@ -143,7 +146,7 @@ public class GameManager : MonoBehaviour {
                 gameGUI.setScore(score);
                 Instantiate(blueExplosion, dotPosition.position, Quaternion.identity);
                 generateNewMove();
-               // changeDotPosition();
+                // changeDotPosition();
             }
         }
         else if (turn == red && color == "red")
@@ -165,7 +168,7 @@ public class GameManager : MonoBehaviour {
                 gameGUI.setScore(score);
                 Instantiate(greenExplosion, dotPosition.position, Quaternion.identity);
                 generateNewMove();
-               // changeDotPosition();
+                // changeDotPosition();
             }
         }
         else
@@ -187,12 +190,12 @@ public class GameManager : MonoBehaviour {
         greenScript.Speed = 0f;
     }
 
-    
+
 
 
     public void generateNewMove()
     {
-        
+
         turn = Random.Range(0, 3);
         colorText = Random.Range(0, 3);
 
@@ -202,7 +205,7 @@ public class GameManager : MonoBehaviour {
             turn = 0;
             gameGUI.setTextDisplay(0, colorText);
         }
-        else if(turn == 1)
+        else if (turn == 1)
         {
             //red
             turn = 1;
@@ -221,24 +224,27 @@ public class GameManager : MonoBehaviour {
 
     public void SpawnAllInMiddle()
     {
-        Vector2 midPoint = Camera.main.ScreenToWorldPoint(new Vector2((Screen.width / 2), (Screen.height / 1.1f)/2));
+        Vector2 midPoint = Camera.main.ScreenToWorldPoint(new Vector2((Screen.width / 2), (Screen.height / 1.1f) / 2));
         redScript.updatePosition(midPoint);
         blueScript.updatePosition(midPoint);
         greenScript.updatePosition(midPoint);
 
+
         float speedAdj = redScript.Speed * .04f;
 
         this.SendDotsInRandomDirectinonsAwayFromEachother();
-        
+
         redScript.Speed += speedAdj;
         blueScript.Speed += speedAdj;
         greenScript.Speed += speedAdj;
+
+        Debug.Log(redScript.Speed);
     }
 
     public void SendDotsInRandomDirectinonsAwayFromEachother()
     {
         int combo = Random.Range(0, 17);
-
+        //int combo = 0;
 
         //Cwxr
         Vector2 topLeft = new Vector2(-1, 1);
@@ -246,139 +252,244 @@ public class GameManager : MonoBehaviour {
         Vector2 bottomLeft = new Vector2(-1, -1);
         Vector2 bottomRight = new Vector2(1, -1);
 
-        switch (combo)
-        {
-            case 0:
-                blueScript.SetDirection(topLeft); //tl
-                redScript.SetDirection(topRight); //tr
-                greenScript.SetDirection(bottomLeft); //br
-                break;
-            case 1:
-                blueScript.SetDirection(topLeft); //tl
-                redScript.SetDirection(topRight); 
-                greenScript.SetDirection(bottomRight);
-                break;
-            case 2:
-                blueScript.SetDirection(topRight); 
-                redScript.SetDirection(bottomRight);
-                greenScript.SetDirection(bottomLeft);
-                break;
-            case 3:
-                blueScript.SetDirection(topRight); 
-                redScript.SetDirection(bottomLeft); 
-                greenScript.SetDirection(bottomRight);
-                break;
-            case 4:
-                blueScript.SetDirection(topLeft);
-                redScript.SetDirection(bottomLeft);
-                greenScript.SetDirection(topRight);
-                break;
-            case 5:
-                blueScript.SetDirection(topLeft);
-                redScript.SetDirection(bottomRight);
-                greenScript.SetDirection(topRight);
-                break;
-            case 6:
-                blueScript.SetDirection(topRight);
-                redScript.SetDirection(topLeft);
-                greenScript.SetDirection(bottomLeft);
-                break;
-            case 7:
-                blueScript.SetDirection(topRight);
-                redScript.SetDirection(topLeft);
-                greenScript.SetDirection(bottomRight);
-                break;
-            case 8:
-                blueScript.SetDirection(bottomRight);
-                redScript.SetDirection(topLeft);
-                greenScript.SetDirection(bottomLeft);
-                break;
-            case 9:
-                blueScript.SetDirection(bottomLeft);
-                redScript.SetDirection(topLeft);
-                greenScript.SetDirection(bottomRight);
-                break;
-            case 10:
-                blueScript.SetDirection(bottomLeft);
-                redScript.SetDirection(topLeft);
-                greenScript.SetDirection(bottomRight);
-                break;
-            case 11:
-                blueScript.SetDirection(bottomLeft);
-                redScript.SetDirection(topLeft);
-                greenScript.SetDirection(topRight);
-                break;
-            case 12:
-                blueScript.SetDirection(topRight);
-                redScript.SetDirection(bottomRight);
-                greenScript.SetDirection(topLeft);
-                break;
-            case 13:
-                blueScript.SetDirection(topRight);
-                redScript.SetDirection(bottomLeft);
-                greenScript.SetDirection(topLeft);
-                break;
-            case 14:
-                blueScript.SetDirection(bottomLeft);
-                redScript.SetDirection(topRight);
-                greenScript.SetDirection(topLeft);
-                break;
-            case 15:
-                blueScript.SetDirection(bottomRight);
-                redScript.SetDirection(topRight);
-                greenScript.SetDirection(topLeft);
-                break;
-            case 16:
-                blueScript.SetDirection(bottomRight);
-                redScript.SetDirection(bottomLeft);
-                greenScript.SetDirection(topLeft);
-                break;
-            case 17:
-                blueScript.SetDirection(bottomLeft);
-                redScript.SetDirection(bottomRight);
-                greenScript.SetDirection(topLeft);
-                break;
-            default: Debug.Log("You fucked up");
-                break;
-        }
-    }
+        Vector2 top = new Vector2(0, 1);
+        Vector2 right = new Vector2(1, 0);
+        Vector2 bottom = new Vector2(0, -1);
+        Vector2 left = new Vector2(-1, 0);
 
-    public void changeDotPosition()
-    {
-        Vector2 bluePosition = createValidPositionInGameBoard(blueScript.radius);
-        Vector2 redPosition = createValidPositionInGameBoard(redScript.radius);
-        Vector2 greenPosition = createValidPositionInGameBoard(greenScript.radius);
-        blueScript.updatePosition(bluePosition);
-        redScript.updatePosition(redPosition);
-        greenScript.updatePosition(greenPosition);
+        //  Vector2 rotationShift = new Vector2(-1f, 0f);
 
 
-        //doTheseObjectsOverlap(blueScript.radius, bluePosition, redPosition); // need to update if objects have different radiuses
+
+        int flip = Random.Range(0, 1);
         
-    }
-
-    bool doTheseObjectsOverlap(float objectsRadius, Vector2 a, Vector2 b)
-    {
-        float distance = Vector3.Distance(a, b);
-
-        if (distance < COLLIDERRADIUS)
+        // blueScript.SetDirection(topLeft + rotationShift); //tl
+        if (flip == 0)
         {
-            changeDotPosition();
+            #region choosingDiagnol to go
+            switch (combo)
+            {
+                case 0:
+                    blueScript.SetDirection(topLeft); //tl
+                    redScript.SetDirection(topRight); //tr
+                    greenScript.SetDirection(bottomLeft); //br
+                    break;
+                case 1:
+                    blueScript.SetDirection(topLeft); //tl
+                    redScript.SetDirection(topRight);
+                    greenScript.SetDirection(bottomRight);
+                    break;
+                case 2:
+                    blueScript.SetDirection(topRight);
+                    redScript.SetDirection(bottomRight);
+                    greenScript.SetDirection(bottomLeft);
+                    break;
+                case 3:
+                    blueScript.SetDirection(topRight);
+                    redScript.SetDirection(bottomLeft);
+                    greenScript.SetDirection(bottomRight);
+                    break;
+                case 4:
+                    blueScript.SetDirection(topLeft);
+                    redScript.SetDirection(bottomLeft);
+                    greenScript.SetDirection(topRight);
+                    break;
+                case 5:
+                    blueScript.SetDirection(topLeft);
+                    redScript.SetDirection(bottomRight);
+                    greenScript.SetDirection(topRight);
+                    break;
+                case 6:
+                    blueScript.SetDirection(topRight);
+                    redScript.SetDirection(topLeft);
+                    greenScript.SetDirection(bottomLeft);
+                    break;
+                case 7:
+                    blueScript.SetDirection(topRight);
+                    redScript.SetDirection(topLeft);
+                    greenScript.SetDirection(bottomRight);
+                    break;
+                case 8:
+                    blueScript.SetDirection(bottomRight);
+                    redScript.SetDirection(topLeft);
+                    greenScript.SetDirection(bottomLeft);
+                    break;
+                case 9:
+                    blueScript.SetDirection(bottomLeft);
+                    redScript.SetDirection(topLeft);
+                    greenScript.SetDirection(bottomRight);
+                    break;
+                case 10:
+                    blueScript.SetDirection(bottomLeft);
+                    redScript.SetDirection(topLeft);
+                    greenScript.SetDirection(bottomRight);
+                    break;
+                case 11:
+                    blueScript.SetDirection(bottomLeft);
+                    redScript.SetDirection(topLeft);
+                    greenScript.SetDirection(topRight);
+                    break;
+                case 12:
+                    blueScript.SetDirection(topRight);
+                    redScript.SetDirection(bottomRight);
+                    greenScript.SetDirection(topLeft);
+                    break;
+                case 13:
+                    blueScript.SetDirection(topRight);
+                    redScript.SetDirection(bottomLeft);
+                    greenScript.SetDirection(topLeft);
+                    break;
+                case 14:
+                    blueScript.SetDirection(bottomLeft);
+                    redScript.SetDirection(topRight);
+                    greenScript.SetDirection(topLeft);
+                    break;
+                case 15:
+                    blueScript.SetDirection(bottomRight);
+                    redScript.SetDirection(topRight);
+                    greenScript.SetDirection(topLeft);
+                    break;
+                case 16:
+                    blueScript.SetDirection(bottomRight);
+                    redScript.SetDirection(bottomLeft);
+                    greenScript.SetDirection(topLeft);
+                    break;
+                case 17:
+                    blueScript.SetDirection(bottomLeft);
+                    redScript.SetDirection(bottomRight);
+                    greenScript.SetDirection(topLeft);
+                    break;
+                default:
+                    Debug.Log("You fucked up");
+                    break;
+            }
+            #endregion
         }
+        else
+        {
 
-            return false;
+            switch (combo)
+            {
+                case 0:
+                    blueScript.SetDirection(top); //tl
+                    redScript.SetDirection(right); //tr
+                    greenScript.SetDirection(bottom); //br
+                    break;
+                case 1:
+                    blueScript.SetDirection(top); //tl
+                    redScript.SetDirection(right);
+                    greenScript.SetDirection(left);
+                    break;
+                case 2:
+                    blueScript.SetDirection(right);
+                    redScript.SetDirection(left);
+                    greenScript.SetDirection(bottom);
+                    break;
+                case 3:
+                    blueScript.SetDirection(right);
+                    redScript.SetDirection(bottom);
+                    greenScript.SetDirection(left);
+                    break;
+                case 4:
+                    blueScript.SetDirection(top);
+                    redScript.SetDirection(bottom);
+                    greenScript.SetDirection(right);
+                    break;
+                case 5:
+                    blueScript.SetDirection(top);
+                    redScript.SetDirection(left);
+                    greenScript.SetDirection(right);
+                    break;
+                case 6:
+                    blueScript.SetDirection(right);
+                    redScript.SetDirection(top);
+                    greenScript.SetDirection(bottom);
+                    break;
+                case 7:
+                    blueScript.SetDirection(right);
+                    redScript.SetDirection(top);
+                    greenScript.SetDirection(left);
+                    break;
+                case 8:
+                    blueScript.SetDirection(left);
+                    redScript.SetDirection(top);
+                    greenScript.SetDirection(bottom);
+                    break;
+                case 9:
+                    blueScript.SetDirection(bottom);
+                    redScript.SetDirection(top);
+                    greenScript.SetDirection(left);
+                    break;
+                case 10:
+                    blueScript.SetDirection(bottom);
+                    redScript.SetDirection(top);
+                    greenScript.SetDirection(left);
+                    break;
+                case 11:
+                    blueScript.SetDirection(bottom);
+                    redScript.SetDirection(top);
+                    greenScript.SetDirection(right);
+                    break;
+                case 12:
+                    blueScript.SetDirection(right);
+                    redScript.SetDirection(left);
+                    greenScript.SetDirection(top);
+                    break;
+                case 13:
+                    blueScript.SetDirection(right);
+                    redScript.SetDirection(bottom);
+                    greenScript.SetDirection(top);
+                    break;
+                case 14:
+                    blueScript.SetDirection(bottom);
+                    redScript.SetDirection(right);
+                    greenScript.SetDirection(top);
+                    break;
+                case 15:
+                    blueScript.SetDirection(left);
+                    redScript.SetDirection(right);
+                    greenScript.SetDirection(top);
+                    break;
+                case 16:
+                    blueScript.SetDirection(left);
+                    redScript.SetDirection(bottom);
+                    greenScript.SetDirection(top);
+                    break;
+                case 17:
+                    blueScript.SetDirection(bottom);
+                    redScript.SetDirection(left);
+                    greenScript.SetDirection(top);
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 
-    private Vector2 createValidPositionInGameBoard(float objectsRadius)
-    {
-        Vector2 temp = Camera.main.ScreenToWorldPoint(new Vector2(Random.Range(0, Screen.width), Random.Range(0, Screen.height /1.4f)));
-        Vector2 btmRightCorner = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height)); // i think is actually top right musta been out of it when i did this
-        Vector2 topLeftCorner = Camera.main.ScreenToWorldPoint(new Vector2(0, 0)); // i think this is actaullly bottom left
-        float x = Mathf.Clamp(temp.x, topLeftCorner.x + objectsRadius, btmRightCorner.x - objectsRadius);
-        float y = Mathf.Clamp(temp.y, topLeftCorner.y + objectsRadius, btmRightCorner.y - objectsRadius);
 
-        return new Vector2(x, y);
-    }
+    // deprecated
+    //bool doTheseObjectsOverlap(float objectsRadius, Vector2 a, Vector2 b)
+    //{
+    //    float distance = Vector3.Distance(a, b);
+
+    //    if (distance < COLLIDERRADIUS)
+    //    {
+    //        //changeDotPosition();
+    //    }
+
+    //    return false;
+    //}
+
+    //private Vector2 createValidPositionInGameBoard(float objectsRadius)
+    //{
+    //    Vector2 temp = Camera.main.ScreenToWorldPoint(new Vector2(Random.Range(0, Screen.width), Random.Range(0, Screen.height / 1.4f)));
+    //    Vector2 btmRightCorner = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height)); // i think is actually top right musta been out of it when i did this
+    //    Vector2 topLeftCorner = Camera.main.ScreenToWorldPoint(new Vector2(0, 0)); // i think this is actaullly bottom left
+    //    float x = Mathf.Clamp(temp.x, topLeftCorner.x + objectsRadius, btmRightCorner.x - objectsRadius);
+    //    float y = Mathf.Clamp(temp.y, topLeftCorner.y + objectsRadius, btmRightCorner.y - objectsRadius);
+
+    //    return new Vector2(x, y);
+    //}
 
     IEnumerator wait()
     {
@@ -389,7 +500,7 @@ public class GameManager : MonoBehaviour {
 
     public void gameFinished()
     {
-        
+
         //save score, then load next scene
         saveScore.GetComponent<ScoresManager>().setcurScore(gameGUI.getScore());
         Application.LoadLevel(3);
@@ -397,6 +508,11 @@ public class GameManager : MonoBehaviour {
 
     public void EscapedScreen(string color)
     {
+        //#if DEBUG
+        //        //Debug.Log(color);
+        //        //this.generateNewMove();
+        //        //return;
+        //#endif
         if (turn == blue && color == "blue")
         {
             gameFinished();
@@ -406,8 +522,11 @@ public class GameManager : MonoBehaviour {
             gameFinished();
         }
         else if (turn == green && color == "green")
+        {
             gameFinished();
+        }
     }
+
 
     //    if (turn == blue)
     //    {
@@ -481,7 +600,7 @@ public class GameManager : MonoBehaviour {
     //                score++;
     //                gameGUI.setScore(score);
 
-    
+
     //                Instantiate(redExplosion, dotPosition.position, Quaternion.identity);
 
     //                //blueScript.changePosition();
@@ -534,6 +653,7 @@ public class GameManager : MonoBehaviour {
     //            StartCoroutine(wait());
     //        }
     //    }
+
+
+
 }
-
-

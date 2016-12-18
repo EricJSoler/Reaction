@@ -23,7 +23,11 @@ public class CircleScript : MonoBehaviour
     {
         get { return speed; }
 
-        set { speed = value; }
+        set { speed = value;
+//#if DEBUG
+//    speed = .25f;        
+//#endif
+        }
     }
 
     void Awake()
@@ -48,7 +52,7 @@ public class CircleScript : MonoBehaviour
             manager.EscapedScreen(this.color);
         }
 
-        this.transform.position += (Vector3)((this.direction).normalized * this.speed * Time.deltaTime);
+        this.transform.position += (Vector3)((this.direction).normalized * this.Speed * Time.deltaTime);
     }
 
     void OnMouseDown()
