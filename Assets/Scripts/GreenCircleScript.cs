@@ -9,7 +9,7 @@ public class GreenCircleScript : MonoBehaviour
     GameManager manager;
     Vector2 direction = new Vector2();
 
-    private float speed = 1f;
+    private float speed = 0f;
 
 
 
