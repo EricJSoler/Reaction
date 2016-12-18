@@ -9,7 +9,7 @@ public class RedCircleScript : MonoBehaviour {
     bool collisionCheck;
     public SpriteRenderer dotRenderer;
 
-    float speed = 1f;
+    float speed = 0f;
 
     Vector2 direction = new Vector2(); 
 

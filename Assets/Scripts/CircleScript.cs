@@ -9,7 +9,7 @@ public class CircleScript : MonoBehaviour {
     public SpriteRenderer dotRenderer;
 
     private Vector2 direction;
-    private float speed = 1f;
+    private float speed = 0f;
     
     void Start () {
         manager = FindObjectOfType<GameManager>();
