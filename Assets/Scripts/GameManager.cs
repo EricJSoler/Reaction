@@ -558,10 +558,18 @@ public class GameManager : MonoBehaviour
     {
         gameGUI.setGameOver(true);
         gameOver = true;
-    yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(2.0f);
         gameFinished();
     }
 
+    IEnumerator outOfBounds()
+    {
+        gameGUI.setGameOver(true);
+        gameOver = true;
+        fadeOutDots();
+        yield return new WaitForSeconds(2.0f);
+        gameFinished();
+    }
 
 
     void fadeOutDots()
@@ -587,31 +595,31 @@ public class GameManager : MonoBehaviour
         //        //this.generateNewMove();
         //        //return;
         //#endif
-        fadeOutDots();
+        
 
         if (turn == blue && color == "blue")
         {
             //fadeOutDots();
-            StartCoroutine(wait());
+            StartCoroutine(outOfBounds());
             
             //gameFinished();
         }
         else if (turn == red && color == "red")
         {
             //fadeOutDots();
-            StartCoroutine(wait());
+            StartCoroutine(outOfBounds());
             
         }
         else if (turn == green && color == "green")
         {
             //fadeOutDots();
-            StartCoroutine(wait());
+            StartCoroutine(outOfBounds());
             
         }
         else if (turn == yellow && color == "yellow")
         {
             //fadeOutDots();
-            StartCoroutine(wait());
+            StartCoroutine(outOfBounds());
         }
         
     }
