@@ -284,10 +284,10 @@ public class GameManager : MonoBehaviour
 
 
 
-        int flip = Random.Range(0, 1);
+        int flip = Random.Range(0, 10);
         
         // blueScript.SetDirection(topLeft + rotationShift); //tl
-        if (flip == 0)
+        if (flip < 5 )
         {
             #region choosingDiagnol to go
             switch (combo)
@@ -296,91 +296,109 @@ public class GameManager : MonoBehaviour
                     blueScript.SetDirection(topLeft); //tl
                     redScript.SetDirection(topRight); //tr
                     greenScript.SetDirection(bottomLeft); //br
+                    yellowScript.SetDirection(bottomRight);
                     break;
                 case 1:
                     blueScript.SetDirection(topLeft); //tl
                     redScript.SetDirection(topRight);
                     greenScript.SetDirection(bottomRight);
+                    yellowScript.SetDirection(bottomLeft);
                     break;
                 case 2:
                     blueScript.SetDirection(topRight);
                     redScript.SetDirection(bottomRight);
                     greenScript.SetDirection(bottomLeft);
+                    yellowScript.SetDirection(topLeft);
                     break;
                 case 3:
                     blueScript.SetDirection(topRight);
                     redScript.SetDirection(bottomLeft);
                     greenScript.SetDirection(bottomRight);
+                    yellowScript.SetDirection(topLeft);
                     break;
                 case 4:
                     blueScript.SetDirection(topLeft);
                     redScript.SetDirection(bottomLeft);
                     greenScript.SetDirection(topRight);
+                    yellowScript.SetDirection(bottomRight);
                     break;
                 case 5:
                     blueScript.SetDirection(topLeft);
                     redScript.SetDirection(bottomRight);
                     greenScript.SetDirection(topRight);
+                    yellowScript.SetDirection(bottomLeft);
                     break;
                 case 6:
                     blueScript.SetDirection(topRight);
                     redScript.SetDirection(topLeft);
                     greenScript.SetDirection(bottomLeft);
+                    yellowScript.SetDirection(bottomRight);
                     break;
                 case 7:
                     blueScript.SetDirection(topRight);
                     redScript.SetDirection(topLeft);
                     greenScript.SetDirection(bottomRight);
+                    yellowScript.SetDirection(bottomLeft);
                     break;
                 case 8:
                     blueScript.SetDirection(bottomRight);
                     redScript.SetDirection(topLeft);
                     greenScript.SetDirection(bottomLeft);
+                    yellowScript.SetDirection(topRight);
                     break;
                 case 9:
                     blueScript.SetDirection(bottomLeft);
                     redScript.SetDirection(topLeft);
                     greenScript.SetDirection(bottomRight);
+                    yellowScript.SetDirection(topRight);
                     break;
                 case 10:
                     blueScript.SetDirection(bottomLeft);
                     redScript.SetDirection(topLeft);
                     greenScript.SetDirection(bottomRight);
+                    yellowScript.SetDirection(topRight);
                     break;
                 case 11:
                     blueScript.SetDirection(bottomLeft);
                     redScript.SetDirection(topLeft);
                     greenScript.SetDirection(topRight);
+                    yellowScript.SetDirection(bottomRight);
                     break;
                 case 12:
                     blueScript.SetDirection(topRight);
                     redScript.SetDirection(bottomRight);
                     greenScript.SetDirection(topLeft);
+                    yellowScript.SetDirection(bottomLeft);
                     break;
                 case 13:
                     blueScript.SetDirection(topRight);
                     redScript.SetDirection(bottomLeft);
                     greenScript.SetDirection(topLeft);
+                    yellowScript.SetDirection(bottomRight);
                     break;
                 case 14:
                     blueScript.SetDirection(bottomLeft);
                     redScript.SetDirection(topRight);
                     greenScript.SetDirection(topLeft);
+                    yellowScript.SetDirection(bottomRight);
                     break;
                 case 15:
                     blueScript.SetDirection(bottomRight);
                     redScript.SetDirection(topRight);
                     greenScript.SetDirection(topLeft);
+                    yellowScript.SetDirection(bottomLeft);
                     break;
                 case 16:
                     blueScript.SetDirection(bottomRight);
                     redScript.SetDirection(bottomLeft);
                     greenScript.SetDirection(topLeft);
+                    yellowScript.SetDirection(topRight);
                     break;
                 case 17:
                     blueScript.SetDirection(bottomLeft);
                     redScript.SetDirection(bottomRight);
                     greenScript.SetDirection(topLeft);
+                    yellowScript.SetDirection(topRight);
                     break;
                 default:
                     Debug.Log("You fucked up");
@@ -390,98 +408,115 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-
             switch (combo)
             {
                 case 0:
                     blueScript.SetDirection(top); //tl
                     redScript.SetDirection(right); //tr
                     greenScript.SetDirection(bottom); //br
+                    yellowScript.SetDirection(left);
                     break;
                 case 1:
                     blueScript.SetDirection(top); //tl
                     redScript.SetDirection(right);
                     greenScript.SetDirection(left);
+                    yellowScript.SetDirection(bottom);
                     break;
                 case 2:
                     blueScript.SetDirection(right);
                     redScript.SetDirection(left);
                     greenScript.SetDirection(bottom);
+                    yellowScript.SetDirection(top);
                     break;
                 case 3:
                     blueScript.SetDirection(right);
                     redScript.SetDirection(bottom);
                     greenScript.SetDirection(left);
+                    yellowScript.SetDirection(top);
                     break;
                 case 4:
                     blueScript.SetDirection(top);
                     redScript.SetDirection(bottom);
                     greenScript.SetDirection(right);
+                    yellowScript.SetDirection(left);
                     break;
                 case 5:
                     blueScript.SetDirection(top);
                     redScript.SetDirection(left);
                     greenScript.SetDirection(right);
+                    yellowScript.SetDirection(bottom);
                     break;
                 case 6:
                     blueScript.SetDirection(right);
                     redScript.SetDirection(top);
                     greenScript.SetDirection(bottom);
+                    yellowScript.SetDirection(left);
                     break;
                 case 7:
                     blueScript.SetDirection(right);
                     redScript.SetDirection(top);
                     greenScript.SetDirection(left);
+                    yellowScript.SetDirection(bottom);
                     break;
                 case 8:
                     blueScript.SetDirection(left);
                     redScript.SetDirection(top);
                     greenScript.SetDirection(bottom);
+                    yellowScript.SetDirection(right);
                     break;
                 case 9:
                     blueScript.SetDirection(bottom);
                     redScript.SetDirection(top);
                     greenScript.SetDirection(left);
+                    yellowScript.SetDirection(right);
                     break;
                 case 10:
                     blueScript.SetDirection(bottom);
                     redScript.SetDirection(top);
                     greenScript.SetDirection(left);
+                    yellowScript.SetDirection(right);
                     break;
                 case 11:
                     blueScript.SetDirection(bottom);
                     redScript.SetDirection(top);
                     greenScript.SetDirection(right);
+                    yellowScript.SetDirection(left);
                     break;
                 case 12:
                     blueScript.SetDirection(right);
                     redScript.SetDirection(left);
                     greenScript.SetDirection(top);
+                    yellowScript.SetDirection(bottom);
                     break;
                 case 13:
                     blueScript.SetDirection(right);
                     redScript.SetDirection(bottom);
                     greenScript.SetDirection(top);
+                    yellowScript.SetDirection(left);
                     break;
                 case 14:
                     blueScript.SetDirection(bottom);
                     redScript.SetDirection(right);
                     greenScript.SetDirection(top);
+                    yellowScript.SetDirection(left);
                     break;
                 case 15:
                     blueScript.SetDirection(left);
                     redScript.SetDirection(right);
                     greenScript.SetDirection(top);
+                    yellowScript.SetDirection(bottom);
                     break;
                 case 16:
                     blueScript.SetDirection(left);
                     redScript.SetDirection(bottom);
                     greenScript.SetDirection(top);
+                    yellowScript.SetDirection(right);
                     break;
                 case 17:
                     blueScript.SetDirection(bottom);
                     redScript.SetDirection(left);
                     greenScript.SetDirection(top);
+                    yellowScript.SetDirection(right);
                     break;
                 default:
                     break;
