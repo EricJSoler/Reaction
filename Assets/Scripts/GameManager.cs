@@ -261,10 +261,14 @@ public class GameManager : MonoBehaviour
 
         this.SendDotsInRandomDirectinonsAwayFromEachother();
 
-        redScript.Speed += speedAdj;
-        blueScript.Speed += speedAdj;
-        greenScript.Speed += speedAdj;
-        yellowScript.Speed += speedAdj;
+        //max speed
+        if (redScript.Speed < 3.15f)
+        {
+            redScript.Speed += speedAdj;
+            blueScript.Speed += speedAdj;
+            greenScript.Speed += speedAdj;
+            yellowScript.Speed += speedAdj;
+        }
 
         Debug.Log(redScript.Speed);
     }
