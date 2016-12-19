@@ -583,6 +583,10 @@ public class GameManager : MonoBehaviour
         {
             gameFinished();
         }
+        else if (turn == yellow && color == "yellow")
+        {
+            gameFinished();
+        }
     }
 
 
