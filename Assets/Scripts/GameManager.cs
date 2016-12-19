@@ -587,31 +587,33 @@ public class GameManager : MonoBehaviour
         //        //this.generateNewMove();
         //        //return;
         //#endif
+        fadeOutDots();
+
         if (turn == blue && color == "blue")
         {
-            fadeOutDots();
+            //fadeOutDots();
             StartCoroutine(wait());
             
             //gameFinished();
         }
         else if (turn == red && color == "red")
         {
-            fadeOutDots();
+            //fadeOutDots();
             StartCoroutine(wait());
             
         }
         else if (turn == green && color == "green")
         {
-            fadeOutDots();
+            //fadeOutDots();
             StartCoroutine(wait());
             
         }
         else if (turn == yellow && color == "yellow")
         {
-            fadeOutDots();
+            //fadeOutDots();
             StartCoroutine(wait());
-            
         }
+        
     }
 
 
