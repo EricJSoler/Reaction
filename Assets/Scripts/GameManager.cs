@@ -7,10 +7,12 @@ public class GameManager : MonoBehaviour
     public GameObject blueDot;
     public GameObject redDot;
     public GameObject greenDot;
+    public GameObject yellowDot;
 
     CircleScript blueScript;
     CircleScript redScript;
     CircleScript greenScript;
+    CircleScript yellowScript;
 
     private const float COLLIDERRADIUS = 1.85f;
     GameGUI gameGUI;
@@ -25,6 +27,7 @@ public class GameManager : MonoBehaviour
     int blue = 0;
     int red = 1;
     int green = 2;
+    int yellow = 3;
     int turn = 0;
 
 
@@ -36,6 +39,7 @@ public class GameManager : MonoBehaviour
     public GameObject blueExplosion;
     public GameObject redExplosion;
     public GameObject greenExplosion;
+    public GameObject yellowExplosion;
     public GameObject X_GameOver;
     public static GameObject saveScore;
     bool gameOver = false;
@@ -101,7 +105,7 @@ public class GameManager : MonoBehaviour
         blueScript = blueDot.GetComponent<CircleScript>();
         redScript = redDot.GetComponent<CircleScript>();
         greenScript = greenDot.GetComponent<CircleScript>();
-
+        yellowScript = yellowDot.GetComponent<CircleScript>();
 
         gameGUI = FindObjectOfType<GameGUI>();
         gameGUI.setScore(0);
@@ -171,6 +175,17 @@ public class GameManager : MonoBehaviour
                 // changeDotPosition();
             }
         }
+        else if (turn == yellow && color == "yellow")
+        {
+            if (!gameOver)
+            {
+                score++;
+                gameGUI.setScore(score);
+                Instantiate(yellowExplosion, dotPosition.position, Quaternion.identity);
+                generateNewMove();
+                // changeDotPosition();
+            }
+        }
         else
         {
             gameOver = true;
@@ -188,6 +203,7 @@ public class GameManager : MonoBehaviour
         blueScript.Speed = 0f;
         redScript.Speed = 0f;
         greenScript.Speed = 0f;
+        yellowScript.Speed = 0f;
     }
 
 
@@ -196,8 +212,8 @@ public class GameManager : MonoBehaviour
     public void generateNewMove()
     {
 
-        turn = Random.Range(0, 3);
-        colorText = Random.Range(0, 3);
+        turn = Random.Range(0, 4);
+        colorText = Random.Range(0, 4);
 
         if (turn == 0)
         {
@@ -211,11 +227,17 @@ public class GameManager : MonoBehaviour
             turn = 1;
             gameGUI.setTextDisplay(1, colorText);
         }
-        else
+        else if (turn == 2)
         {
             //green
             turn = 2;
             gameGUI.setTextDisplay(2, colorText);
+        }
+        else
+        {
+            //yellow
+            turn = 3;
+            gameGUI.setTextDisplay(3, colorText);
         }
 
         this.SpawnAllInMiddle();
@@ -228,7 +250,7 @@ public class GameManager : MonoBehaviour
         redScript.updatePosition(midPoint);
         blueScript.updatePosition(midPoint);
         greenScript.updatePosition(midPoint);
-
+        yellowScript.updatePosition(midPoint);
 
         float speedAdj = redScript.Speed * .04f;
 
@@ -237,6 +259,7 @@ public class GameManager : MonoBehaviour
         redScript.Speed += speedAdj;
         blueScript.Speed += speedAdj;
         greenScript.Speed += speedAdj;
+        yellowScript.Speed += speedAdj;
 
         Debug.Log(redScript.Speed);
     }

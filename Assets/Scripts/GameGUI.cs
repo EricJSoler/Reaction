@@ -25,15 +25,24 @@ public class GameGUI : MonoBehaviour {
     public GameObject blueR_Text;
     public GameObject blueB_Text;
     public GameObject blueG_Text;
+    public GameObject blueY_Text;
 
     public GameObject redR_Text;
     public GameObject redB_Text;
     public GameObject redG_Text;
-
+    public GameObject redY_Text;
 
     public GameObject greenR_Text;
     public GameObject greenB_Text;
     public GameObject greenG_Text;
+    public GameObject greenY_Text;
+
+    public GameObject yellowR_Text;
+    public GameObject yellowB_Text;
+    public GameObject yellowG_Text;
+    public GameObject yellowY_Text;
+
+
 
     public GameObject saveScore;
     private bool timeUp;
@@ -174,56 +183,100 @@ public class GameGUI : MonoBehaviour {
         //if blue
         if (readText == 0)
         {
+            //color blue
             if (textColor == 0)
             {
                 blueB_Text.SetActive(true);
-
                 blueR_Text.SetActive(false);
                 blueG_Text.SetActive(false);
+                blueY_Text.SetActive(false);
 
                 redR_Text.SetActive(false);
                 redB_Text.SetActive(false);
                 redG_Text.SetActive(false);
-
+                redY_Text.SetActive(false);
 
                 greenR_Text.SetActive(false);
                 greenB_Text.SetActive(false);
                 greenG_Text.SetActive(false);
+                greenY_Text.SetActive(false);
 
+                yellowB_Text.SetActive(false);
+                yellowG_Text.SetActive(false);
+                yellowR_Text.SetActive(false);
+                yellowY_Text.SetActive(false);
 
-}
+            }//color red
             else if (textColor == 1)
             {
 
                 blueB_Text.SetActive(false);
-
                 blueR_Text.SetActive(true);
                 blueG_Text.SetActive(false);
+                blueY_Text.SetActive(false);
 
                 redR_Text.SetActive(false);
                 redB_Text.SetActive(false);
                 redG_Text.SetActive(false);
-
+                redY_Text.SetActive(false);
 
                 greenR_Text.SetActive(false);
                 greenB_Text.SetActive(false);
                 greenG_Text.SetActive(false);
+                greenY_Text.SetActive(false);
+
+                yellowB_Text.SetActive(false);
+                yellowG_Text.SetActive(false);
+                yellowR_Text.SetActive(false);
+                yellowY_Text.SetActive(false);
+
             }
-            else
+            //color green
+            else if (textColor == 2)
             {
                 blueB_Text.SetActive(false);
-
                 blueR_Text.SetActive(false);
                 blueG_Text.SetActive(true);
+                blueY_Text.SetActive(false);
 
                 redR_Text.SetActive(false);
                 redB_Text.SetActive(false);
                 redG_Text.SetActive(false);
-
+                redY_Text.SetActive(false);
 
                 greenR_Text.SetActive(false);
                 greenB_Text.SetActive(false);
                 greenG_Text.SetActive(false);
+                greenY_Text.SetActive(false);
+
+                yellowB_Text.SetActive(false);
+                yellowG_Text.SetActive(false);
+                yellowR_Text.SetActive(false);
+                yellowY_Text.SetActive(false);
+
+            }
+            //if yellow
+            else if (textColor == 3)
+            {
+                blueB_Text.SetActive(false);
+                blueR_Text.SetActive(false);
+                blueG_Text.SetActive(false);
+                blueY_Text.SetActive(true);
+
+                redR_Text.SetActive(false);
+                redB_Text.SetActive(false);
+                redG_Text.SetActive(false);
+                redY_Text.SetActive(false);
+
+                greenR_Text.SetActive(false);
+                greenB_Text.SetActive(false);
+                greenG_Text.SetActive(false);
+                greenY_Text.SetActive(false);
+
+                yellowB_Text.SetActive(false);
+                yellowG_Text.SetActive(false);
+                yellowR_Text.SetActive(false);
+                yellowY_Text.SetActive(false);
             }
 
         }
@@ -236,109 +289,282 @@ public class GameGUI : MonoBehaviour {
                 blueB_Text.SetActive(false);
                 blueR_Text.SetActive(false);
                 blueG_Text.SetActive(false);
+                blueY_Text.SetActive(false);
 
                 redR_Text.SetActive(true);
                 redB_Text.SetActive(false);
                 redG_Text.SetActive(false);
-
+                redY_Text.SetActive(false);
 
                 greenR_Text.SetActive(false);
                 greenB_Text.SetActive(false);
                 greenG_Text.SetActive(false);
+                greenY_Text.SetActive(false);
 
-            }
+                yellowB_Text.SetActive(false);
+                yellowG_Text.SetActive(false);
+                yellowR_Text.SetActive(false);
+                yellowY_Text.SetActive(false);
+
+            }//blue color
             else if (textColor == 1)
             {
                 blueB_Text.SetActive(false);
                 blueR_Text.SetActive(false);
                 blueG_Text.SetActive(false);
+                blueY_Text.SetActive(false);
 
                 redR_Text.SetActive(false);
                 redB_Text.SetActive(true);
                 redG_Text.SetActive(false);
-
+                redY_Text.SetActive(false);
 
                 greenR_Text.SetActive(false);
                 greenB_Text.SetActive(false);
                 greenG_Text.SetActive(false);
-            }
+                greenY_Text.SetActive(false);
+
+                yellowB_Text.SetActive(false);
+                yellowG_Text.SetActive(false);
+                yellowR_Text.SetActive(false);
+                yellowY_Text.SetActive(false);
+            }//green color
             else if (textColor == 2)
             {
                 blueB_Text.SetActive(false);
                 blueR_Text.SetActive(false);
                 blueG_Text.SetActive(false);
+                blueY_Text.SetActive(false);
 
                 redR_Text.SetActive(false);
                 redB_Text.SetActive(false);
                 redG_Text.SetActive(true);
-
+                redY_Text.SetActive(false);
 
                 greenR_Text.SetActive(false);
                 greenB_Text.SetActive(false);
                 greenG_Text.SetActive(false);
+                greenY_Text.SetActive(false);
 
+                yellowB_Text.SetActive(false);
+                yellowG_Text.SetActive(false);
+                yellowR_Text.SetActive(false);
+                yellowY_Text.SetActive(false);
+
+            }//color yellow
+            else if (textColor == 3)
+            {
+                blueB_Text.SetActive(false);
+                blueR_Text.SetActive(false);
+                blueG_Text.SetActive(false);
+                blueY_Text.SetActive(false);
+
+                redR_Text.SetActive(false);
+                redB_Text.SetActive(false);
+                redG_Text.SetActive(false);
+                redY_Text.SetActive(true);
+
+                greenR_Text.SetActive(false);
+                greenB_Text.SetActive(false);
+                greenG_Text.SetActive(false);
+                greenY_Text.SetActive(false);
+
+                yellowB_Text.SetActive(false);
+                yellowG_Text.SetActive(false);
+                yellowR_Text.SetActive(false);
+                yellowY_Text.SetActive(false);
             }
         }
+        //if green
         else if(readText == 2)
         {
 
-            //if green
+            //green color
             if (textColor == 0)
             {
                 blueB_Text.SetActive(false);
                 blueR_Text.SetActive(false);
                 blueG_Text.SetActive(false);
+                blueY_Text.SetActive(false);
 
                 redR_Text.SetActive(false);
                 redB_Text.SetActive(false);
                 redG_Text.SetActive(false);
-
+                redY_Text.SetActive(false);
 
                 greenR_Text.SetActive(false);
                 greenB_Text.SetActive(false);
                 greenG_Text.SetActive(true);
+                greenY_Text.SetActive(false);
 
-            }
+                yellowB_Text.SetActive(false);
+                yellowG_Text.SetActive(false);
+                yellowR_Text.SetActive(false);
+                yellowY_Text.SetActive(false);
+
+            }//blue color
             else if (textColor == 1)
             {
                 blueB_Text.SetActive(false);
                 blueR_Text.SetActive(false);
                 blueG_Text.SetActive(false);
+                blueY_Text.SetActive(false);
 
                 redR_Text.SetActive(false);
                 redB_Text.SetActive(false);
                 redG_Text.SetActive(false);
-
+                redY_Text.SetActive(false);
 
                 greenR_Text.SetActive(false);
                 greenB_Text.SetActive(true);
                 greenG_Text.SetActive(false);
-            }
+                greenY_Text.SetActive(false);
+
+                yellowB_Text.SetActive(false);
+                yellowG_Text.SetActive(false);
+                yellowR_Text.SetActive(false);
+                yellowY_Text.SetActive(false);
+            }//red color
             else if (textColor == 2)
             {
                 blueB_Text.SetActive(false);
                 blueR_Text.SetActive(false);
                 blueG_Text.SetActive(false);
+                blueY_Text.SetActive(false);
 
                 redR_Text.SetActive(false);
                 redB_Text.SetActive(false);
                 redG_Text.SetActive(false);
-
+                redY_Text.SetActive(false);
 
                 greenR_Text.SetActive(true);
                 greenB_Text.SetActive(false);
                 greenG_Text.SetActive(false);
+                greenY_Text.SetActive(false);
+
+                yellowB_Text.SetActive(false);
+                yellowG_Text.SetActive(false);
+                yellowR_Text.SetActive(false);
+                yellowY_Text.SetActive(false);
+
+            }//yellow color
+            else if (textColor == 3)
+            {
+                blueB_Text.SetActive(false);
+                blueR_Text.SetActive(false);
+                blueG_Text.SetActive(false);
+                blueY_Text.SetActive(false);
+
+                redR_Text.SetActive(false);
+                redB_Text.SetActive(false);
+                redG_Text.SetActive(false);
+                redY_Text.SetActive(false);
+
+                greenR_Text.SetActive(false);
+                greenB_Text.SetActive(false);
+                greenG_Text.SetActive(false);
+                greenY_Text.SetActive(true);
+
+                yellowB_Text.SetActive(false);
+                yellowG_Text.SetActive(false);
+                yellowR_Text.SetActive(false);
+                yellowY_Text.SetActive(false);
 
             }
+        }//if yellow
+        else if (readText == 3)
+        {
+            //green color
+            if (textColor == 0)
+            {
+                blueB_Text.SetActive(false);
+                blueR_Text.SetActive(false);
+                blueG_Text.SetActive(false);
+                blueY_Text.SetActive(false);
 
+                redR_Text.SetActive(false);
+                redB_Text.SetActive(false);
+                redG_Text.SetActive(false);
+                redY_Text.SetActive(false);
 
+                greenR_Text.SetActive(false);
+                greenB_Text.SetActive(false);
+                greenG_Text.SetActive(false);
+                greenY_Text.SetActive(false);
 
+                yellowB_Text.SetActive(false);
+                yellowG_Text.SetActive(true);
+                yellowR_Text.SetActive(false);
+                yellowY_Text.SetActive(false);
 
+            }//blue color
+            else if (textColor == 1)
+            {
+                blueB_Text.SetActive(false);
+                blueR_Text.SetActive(false);
+                blueG_Text.SetActive(false);
+                blueY_Text.SetActive(false);
 
+                redR_Text.SetActive(false);
+                redB_Text.SetActive(false);
+                redG_Text.SetActive(false);
+                redY_Text.SetActive(false);
 
+                greenR_Text.SetActive(false);
+                greenB_Text.SetActive(false);
+                greenG_Text.SetActive(false);
+                greenY_Text.SetActive(false);
 
+                yellowB_Text.SetActive(true);
+                yellowG_Text.SetActive(false);
+                yellowR_Text.SetActive(false);
+                yellowY_Text.SetActive(false);
+            }//red color
+            else if (textColor == 2)
+            {
+                blueB_Text.SetActive(false);
+                blueR_Text.SetActive(false);
+                blueG_Text.SetActive(false);
+                blueY_Text.SetActive(false);
 
+                redR_Text.SetActive(false);
+                redB_Text.SetActive(false);
+                redG_Text.SetActive(false);
+                redY_Text.SetActive(false);
 
+                greenR_Text.SetActive(false);
+                greenB_Text.SetActive(false);
+                greenG_Text.SetActive(false);
+                greenY_Text.SetActive(false);
+
+                yellowB_Text.SetActive(false);
+                yellowG_Text.SetActive(false);
+                yellowR_Text.SetActive(true);
+                yellowY_Text.SetActive(false);
+
+            }//if yellow
+            else if(textColor == 3)
+            {
+                blueB_Text.SetActive(false);
+                blueR_Text.SetActive(false);
+                blueG_Text.SetActive(false);
+                blueY_Text.SetActive(false);
+
+                redR_Text.SetActive(false);
+                redB_Text.SetActive(false);
+                redG_Text.SetActive(false);
+                redY_Text.SetActive(false);
+
+                greenR_Text.SetActive(false);
+                greenB_Text.SetActive(false);
+                greenG_Text.SetActive(false);
+                greenY_Text.SetActive(false);
+
+                yellowB_Text.SetActive(false);
+                yellowG_Text.SetActive(false);
+                yellowR_Text.SetActive(false);
+                yellowY_Text.SetActive(true);
+            }
         }
     }
 
