@@ -142,59 +142,64 @@ public class GameManager : MonoBehaviour
     public void DotClicked(string color, Transform dotPosition)
     {
         gameGUI.setStart(startGame);
-        if (turn == blue && color == "blue")
-        {
-            if (!gameOver)
-            {
-                score++;
-                gameGUI.setScore(score);
-                Instantiate(blueExplosion, dotPosition.position, Quaternion.identity);
-                generateNewMove();
-                // changeDotPosition();
-            }
-        }
-        else if (turn == red && color == "red")
-        {
-            if (!gameOver)
-            {
-                score++;
-                gameGUI.setScore(score);
-                Instantiate(redExplosion, dotPosition.position, Quaternion.identity);
-                generateNewMove();
-                //changeDotPosition();
-            }
-        }
-        else if (turn == green && color == "green")
-        {
-            if (!gameOver)
-            {
-                score++;
-                gameGUI.setScore(score);
-                Instantiate(greenExplosion, dotPosition.position, Quaternion.identity);
-                generateNewMove();
-                // changeDotPosition();
-            }
-        }
-        else if (turn == yellow && color == "yellow")
-        {
-            if (!gameOver)
-            {
-                score++;
-                gameGUI.setScore(score);
-                Instantiate(yellowExplosion, dotPosition.position, Quaternion.identity);
-                generateNewMove();
-                // changeDotPosition();
-            }
-        }
-        else
-        {
-            gameOver = true;
-            this.FreezeAllDots();
-            X_GameOver.SetActive(true);
-            //X_GameOver.transform.position = dotPosition.position;
-            X_GameOver.transform.position = new Vector3(dotPosition.position.x, dotPosition.position.y, -5f);
 
-            StartCoroutine(wait());
+        if (!gameOver)
+        {
+
+            if (turn == blue && color == "blue")
+            {
+                if (!gameOver)
+                {
+                    score++;
+                    gameGUI.setScore(score);
+                    Instantiate(blueExplosion, dotPosition.position, Quaternion.identity);
+                    generateNewMove();
+                    // changeDotPosition();
+                }
+            }
+            else if (turn == red && color == "red")
+            {
+                if (!gameOver)
+                {
+                    score++;
+                    gameGUI.setScore(score);
+                    Instantiate(redExplosion, dotPosition.position, Quaternion.identity);
+                    generateNewMove();
+                    //changeDotPosition();
+                }
+            }
+            else if (turn == green && color == "green")
+            {
+                if (!gameOver)
+                {
+                    score++;
+                    gameGUI.setScore(score);
+                    Instantiate(greenExplosion, dotPosition.position, Quaternion.identity);
+                    generateNewMove();
+                    // changeDotPosition();
+                }
+            }
+            else if (turn == yellow && color == "yellow")
+            {
+                if (!gameOver)
+                {
+                    score++;
+                    gameGUI.setScore(score);
+                    Instantiate(yellowExplosion, dotPosition.position, Quaternion.identity);
+                    generateNewMove();
+                    // changeDotPosition();
+                }
+            }
+            else
+            {
+                gameOver = true;
+                this.FreezeAllDots();
+                X_GameOver.SetActive(true);
+                //X_GameOver.transform.position = dotPosition.position;
+                X_GameOver.transform.position = new Vector3(dotPosition.position.x, dotPosition.position.y, -5f);
+
+                StartCoroutine(wait());
+            }
         }
     }
 
@@ -241,7 +246,7 @@ public class GameManager : MonoBehaviour
         }
 
         this.SpawnAllInMiddle();
-
+    
     }
 
     public void SpawnAllInMiddle()

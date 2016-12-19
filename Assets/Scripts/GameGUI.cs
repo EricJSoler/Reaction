@@ -113,7 +113,7 @@ public class GameGUI : MonoBehaviour {
         //score
         GUI.Label(new Rect(Screen.width / 15, Screen.height / 38, Screen.width / 12, Screen.width / 12), "Score", TextStyle2);
         //time
-        GUI.Label(new Rect(Screen.width - Screen.width / 6.0f, Screen.height / 38, Screen.width / 12, Screen.width / 12), "Time", TextStyle2);
+        //GUI.Label(new Rect(Screen.width - Screen.width / 6.0f, Screen.height / 38, Screen.width / 12, Screen.width / 12), "Time", TextStyle2);
 
 
         //display score number
@@ -122,14 +122,14 @@ public class GameGUI : MonoBehaviour {
 
         //GUI.Label(new Rect(Screen.width / 15, Screen.height / 20, Screen.width / 12, Screen.width / 12), score.ToString(), TextStyle);
 
-        if (roundTime < 10)
-        {
-            GUI.Label(new Rect(Screen.width - Screen.width / 7.5f, Screen.height / 15, Screen.width / 12, Screen.width / 12), roundTime.ToString(), TextStyle);
-        }
-        else
-        {
-            GUI.Label(new Rect(Screen.width - Screen.width / 6.0f, Screen.height / 15, Screen.width / 12, Screen.width / 12), roundTime.ToString(), TextStyle);
-        }
+        //if (roundTime < 10)
+        //{
+        //    GUI.Label(new Rect(Screen.width - Screen.width / 7.5f, Screen.height / 15, Screen.width / 12, Screen.width / 12), roundTime.ToString(), TextStyle);
+        //}
+        //else
+        //{
+        //    GUI.Label(new Rect(Screen.width - Screen.width / 6.0f, Screen.height / 15, Screen.width / 12, Screen.width / 12), roundTime.ToString(), TextStyle);
+        //}
 
         if (score > 9)
         {
