@@ -557,8 +557,19 @@ public class GameManager : MonoBehaviour
     IEnumerator wait()
     {
         gameGUI.setGameOver(true);
-        yield return new WaitForSeconds(2.0f);
+        gameOver = true;
+    yield return new WaitForSeconds(2.0f);
         gameFinished();
+    }
+
+
+
+    void fadeOutDots()
+    {
+        blueScript.fadeOut();
+        redScript.fadeOut();
+        yellowScript.fadeOut();
+        greenScript.fadeOut();
     }
 
     public void gameFinished()
@@ -578,19 +589,28 @@ public class GameManager : MonoBehaviour
         //#endif
         if (turn == blue && color == "blue")
         {
-            gameFinished();
+            fadeOutDots();
+            StartCoroutine(wait());
+            
+            //gameFinished();
         }
         else if (turn == red && color == "red")
         {
-            gameFinished();
+            fadeOutDots();
+            StartCoroutine(wait());
+            
         }
         else if (turn == green && color == "green")
         {
-            gameFinished();
+            fadeOutDots();
+            StartCoroutine(wait());
+            
         }
         else if (turn == yellow && color == "yellow")
         {
-            gameFinished();
+            fadeOutDots();
+            StartCoroutine(wait());
+            
         }
     }
 

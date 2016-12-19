@@ -25,7 +25,12 @@ public class MenuGUI : MonoBehaviour {
     AudioSource audio;
 
 
-
+    public SpriteRenderer titleRender;
+    public SpriteRenderer underlineRender;
+    //public CanvasRenderer textBoxRender;
+    //public CanvasRenderer textRender;
+    public Canvas menuCanvas;
+    CanvasGroup canvasGroup;
 
     // Use this for initialization
     void Start () {
@@ -35,6 +40,8 @@ public class MenuGUI : MonoBehaviour {
         //canvas = GameObject.Find("Canvas");
         //input = canvas.GetComponent<InputField>();
         inf_Drag.SetActive(false);
+
+        canvasGroup = menuCanvas.GetComponent<CanvasGroup>();
 
         audio = GetComponent<AudioSource>();
 
@@ -86,28 +93,78 @@ public class MenuGUI : MonoBehaviour {
         //Title
         //GUI.Label(new Rect(Screen.width / 4.5f, Screen.height / 6.6f, Screen.width / 6, Screen.width / 6), "Reaction", TextStyle);
 
-        if (GUI.Button(new Rect(Screen.width / 3.5f, Screen.height / 1.5f, Screen.width / 2.3f, Screen.height / 10.5f), "", btnStyle2))
-        {
+        //if (GUI.Button(new Rect(Screen.width / 3.5f, Screen.height / 1.6f, Screen.width / 2.3f, Screen.height / 10.5f), "", btnStyle2))
+        //{
 
      
-            userName = input.text;
-            saveScore.GetComponent<ScoresManager>().setNewUserName(userName);
-        
+        //    userName = input.text;
+        //    saveScore.GetComponent<ScoresManager>().setNewUserName(userName);
 
-            Application.LoadLevel(2);
-        }
+        //    fadeOut();
+        //    //Application.LoadLevel(2);
+        //}
 
         
     }
 
-
+    public void onPlayClick()
+    {
+        userName = input.text;
+        saveScore.GetComponent<ScoresManager>().setNewUserName(userName);
+        fadeOut();
+        
+    }
     //public string nameCheck(string name)
     //{
-        
-        
 
-        
+
+
+
     //}
+
+    public void fadeOut()
+    {
+        StartCoroutine(fadeOutTxt());
+        
+    }
+
+
+    private IEnumerator fadeOutTxt()
+    {
+        float duration = .4f;
+        float currentTime = 0f;
+
+        float oldAlpha = 1.0f;
+        float finalAlpha = 0.0f;
+
+        while (currentTime < duration)
+        {
+            float alpha = Mathf.Lerp(oldAlpha, finalAlpha, currentTime / duration);
+            //blurRenderer.color = new Color(blurRenderer.color.r, blurRenderer.color.g, blurRenderer.color.b, alpha);
+            //tapRenderer.color = new Color(blurRenderer.color.r, blurRenderer.color.g, blurRenderer.color.b, alpha);
+            titleRender.color = new Color(titleRender.color.r, titleRender.color.g, titleRender.color.b, alpha);
+
+            //textBoxRender.SetMaterial().color = new Color(textBoxRender.GetColor().r, textBoxRender.GetColor().g, textBoxRender.GetColor().b, alpha);
+            canvasGroup.alpha = alpha;
+
+            underlineRender.color = new Color(underlineRender.color.r, underlineRender.color.g, underlineRender.color.b, alpha);
+
+            //tutLighttxt.color = new Color(blurRenderer.color.r, blurRenderer.color.g, blurRenderer.color.b, alpha);
+            //tutRighttxt.color = new Color(tutRenderer.color.r, tutRenderer.color.g, tutRenderer.color.b, alpha);
+            currentTime += Time.deltaTime;
+            yield return null;
+        }
+        titleRender.GetComponent<Renderer>().enabled = false;
+        underlineRender.GetComponent<Renderer>().enabled = false;
+        canvasGroup.interactable = false;
+        Application.LoadLevel(2);
+        //blurRenderer.GetComponent<Renderer>().enabled = false;
+        //tutLighttxt.GetComponent<Renderer>().enabled = false;
+        //tutRighttxt.GetComponent<Renderer>().enabled = false;
+        yield break;
+    }
+
+
 
 
 }
