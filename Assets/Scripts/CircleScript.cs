@@ -41,7 +41,7 @@ public class CircleScript : MonoBehaviour
 
         dotRenderer = this.gameObject.GetComponent<SpriteRenderer>();
         radius = this.gameObject.GetComponent<CircleCollider2D>().radius * this.transform.lossyScale.x;
-        
+        //this.fadeIn();
     }
 
 
@@ -117,6 +117,13 @@ public class CircleScript : MonoBehaviour
         StartCoroutine(fadeIntCR());
     }
 
+    public void fadeOut()
+    {
+        StartCoroutine(fadeOutDot());
+    }
+
+
+
     private IEnumerator fadeIntCR()
     {
         float duration = 0.5f;
@@ -136,6 +143,25 @@ public class CircleScript : MonoBehaviour
         yield break;
     }
 
+    private IEnumerator fadeOutDot()
+    {
+        float duration = .4f;
+        float currentTime = 0f;
+
+        float oldAlpha = 1.0f;
+        float finalAlpha = 0.0f;
+
+        while (currentTime < duration)
+        {
+            float alpha = Mathf.Lerp(oldAlpha, finalAlpha, currentTime / duration);
+
+            dotRenderer.color = new Color(dotRenderer.color.r, dotRenderer.color.g, dotRenderer.color.b, alpha);
+
+            currentTime += Time.deltaTime;
+            yield return null;
+        }
+        yield break;
+    }
 
 
 

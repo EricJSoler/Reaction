@@ -57,6 +57,24 @@ public class GameGUI : MonoBehaviour {
     public SpriteRenderer tutLighttxt;
     public SpriteRenderer tutRighttxt;
 
+
+    SpriteRenderer Bb;
+    SpriteRenderer Br;
+    SpriteRenderer By;
+    SpriteRenderer Bg;
+    SpriteRenderer Rb;
+    SpriteRenderer Rr;
+    SpriteRenderer Ry;
+    SpriteRenderer Rg;
+    SpriteRenderer Gb;
+    SpriteRenderer Gr;
+    SpriteRenderer Gy;
+    SpriteRenderer Gg;
+    SpriteRenderer Yb;
+    SpriteRenderer Yr;
+    SpriteRenderer Yy;
+    SpriteRenderer Yg;
+
     // Use this for initialization
     void Start () {
 
@@ -69,6 +87,28 @@ public class GameGUI : MonoBehaviour {
         time = 30.0f;
         roundTime = 30;
 
+
+        Bb = blueB_Text.GetComponent<SpriteRenderer>();
+        Br = blueR_Text.GetComponent<SpriteRenderer>();
+        By = blueY_Text.GetComponent<SpriteRenderer>();
+        Bg = blueG_Text.GetComponent<SpriteRenderer>();
+        Rb = redB_Text.GetComponent<SpriteRenderer>();
+        Rr = redR_Text.GetComponent<SpriteRenderer>();
+        Ry = redY_Text.GetComponent<SpriteRenderer>();
+        Rg = redG_Text.GetComponent<SpriteRenderer>();
+        Gb = greenB_Text.GetComponent<SpriteRenderer>(); 
+        Gr = greenR_Text.GetComponent<SpriteRenderer>(); 
+        Gy = greenY_Text.GetComponent<SpriteRenderer>(); 
+        Gg = greenG_Text.GetComponent<SpriteRenderer>(); 
+        Yb = yellowB_Text.GetComponent<SpriteRenderer>(); 
+        Yr = yellowR_Text.GetComponent<SpriteRenderer>(); 
+        Yy = yellowY_Text.GetComponent<SpriteRenderer>(); 
+        Yg = yellowG_Text.GetComponent<SpriteRenderer>();
+
+
+        fadeInTut();
+
+
     }
 	
 	// Update is called once per frame
@@ -79,16 +119,16 @@ public class GameGUI : MonoBehaviour {
 
         if (!gameOver && startGame)
         {
-            time -= Time.deltaTime;
-            //multTime = time * 10;
-            roundTime = (int)time;
-            displayTime = roundTime / 10;
+            //time -= Time.deltaTime;
+            ////multTime = time * 10;
+            ////roundTime = (int)time;
+            ////displayTime = roundTime / 10;
 
-            if (roundTime <= 0.0f)
-            {
-                timeUp = true;
-                //Application.LoadLevel(1);
-            }
+            //if (roundTime <= 0.0f)
+            //{
+            //    //timeUp = true;
+            //    //Application.LoadLevel(1);
+            //}
         }
 
       
@@ -140,7 +180,10 @@ public class GameGUI : MonoBehaviour {
             GUI.Label(new Rect(Screen.width / 12, Screen.height / 15, Screen.width / 12, Screen.width / 12), score.ToString(), TextStyle);
         }
 
+        if (gameOver)
+        {
 
+        }
 
 
         textDisplay();
@@ -597,6 +640,9 @@ public class GameGUI : MonoBehaviour {
             tutRenderer.color = new Color(tutRenderer.color.r, tutRenderer.color.g, tutRenderer.color.b, alpha);
             //tutLighttxt.color = new Color(blurRenderer.color.r, blurRenderer.color.g, blurRenderer.color.b, alpha);
             //tutRighttxt.color = new Color(tutRenderer.color.r, tutRenderer.color.g, tutRenderer.color.b, alpha);
+
+        
+
             currentTime += Time.deltaTime;
             yield return null;
         }
@@ -620,10 +666,43 @@ public class GameGUI : MonoBehaviour {
             float alpha = Mathf.Lerp(oldAlpha, finalAlpha, currentTime / duration);
             //tutLighttxt.color = new Color(blurRenderer.color.r, blurRenderer.color.g, blurRenderer.color.b, alpha);
             //tutRighttxt.color = new Color(tutRenderer.color.r, tutRenderer.color.g, tutRenderer.color.b, alpha);
+
+            GUI.color = new Color(GUI.color.r, GUI.color.g, GUI.color.b, alpha);
+
+
+            tutRenderer.color = new Color(tutRenderer.color.r, tutRenderer.color.g, tutRenderer.color.b, alpha);
+            Bb.color = new Color(Bb.color.r, Bb.color.g, Bb.color.b, alpha);
+            Br.color = new Color(Br.color.r, Br.color.g, Br.color.b, alpha);
+            By.color = new Color(By.color.r, By.color.g, By.color.b, alpha);
+            Bg.color = new Color(Bg.color.r, Bg.color.g, Bg.color.b, alpha);
+            Rb.color = new Color(Rb.color.r, Rb.color.g, Rb.color.b, alpha);
+            Rr.color = new Color(Rr.color.r, Rr.color.g, Rr.color.b, alpha);
+            Ry.color = new Color(Ry.color.r, Ry.color.g, Ry.color.b, alpha);
+            Rg.color = new Color(Rg.color.r, Rg.color.g, Rg.color.b, alpha);
+            Gb.color = new Color(Gb.color.r, Gb.color.g, Gb.color.b, alpha);
+            Gr.color = new Color(Gr.color.r, Gr.color.g, Gr.color.b, alpha);
+            Gy.color = new Color(Gy.color.r, Gy.color.g, Gy.color.b, alpha);
+            Gg.color = new Color(Gg.color.r, Gg.color.g, Gg.color.b, alpha);
+            Yb.color = new Color(Yb.color.r, Yb.color.g, Yb.color.b, alpha);
+            Yr.color = new Color(Yr.color.r, Yr.color.g, Yr.color.b, alpha);
+            Yy.color = new Color(Yy.color.r, Yy.color.g, Yy.color.b, alpha);
+            Yg.color = new Color(Yg.color.r, Yg.color.g, Yg.color.b, alpha);
+
+
+
+
+
             currentTime += Time.deltaTime;
             yield return null;
         }
       
         yield break;
     }
+
+
+
+ 
+
+
+
 }
