@@ -16,6 +16,11 @@ public class MenuGUI : MonoBehaviour {
     public static GameObject saveScore;
     float infinite_timer = 0;
 
+
+    float display_Text_Timer = 0;
+    int text_counter = 0;
+
+
     public InputField input;
 
 
@@ -32,6 +37,9 @@ public class MenuGUI : MonoBehaviour {
     public Canvas menuCanvas;
     CanvasGroup canvasGroup;
 
+    public CanvasGroup menutext1;
+    public CanvasGroup menutext2;
+
     // Use this for initialization
     void Start () {
 
@@ -42,6 +50,9 @@ public class MenuGUI : MonoBehaviour {
         inf_Drag.SetActive(false);
 
         canvasGroup = menuCanvas.GetComponent<CanvasGroup>();
+
+        StartCoroutine(fadeName());
+
 
         audio = GetComponent<AudioSource>();
 
@@ -59,10 +70,10 @@ public class MenuGUI : MonoBehaviour {
 	void Update () {
         TextStyle.fontSize = (int)(270.0f * (float)(Screen.width) / 1920.0f); //scale size font
         //userName = input.text;
-
+        display_Text_Timer += (int) Time.deltaTime;
         //userName = input.text;
         //Debug.Log("name " + userName.ToString());
-        if(saveScore.GetComponent<ScoresManager>().getUsername() == "")
+        if (saveScore.GetComponent<ScoresManager>().getUsername() == "")
         {
             Debug.Log("nothing");
         }
@@ -82,6 +93,18 @@ public class MenuGUI : MonoBehaviour {
             infinite_timer = 0;
             inf_Drag.SetActive(false);
         }
+
+
+
+        //if(display_Text_Timer % 5 == 0)
+        //{
+        //    text_counter++;
+
+        //   // 
+
+
+        //}
+
 
 
 
@@ -161,6 +184,87 @@ public class MenuGUI : MonoBehaviour {
         //blurRenderer.GetComponent<Renderer>().enabled = false;
         //tutLighttxt.GetComponent<Renderer>().enabled = false;
         //tutRighttxt.GetComponent<Renderer>().enabled = false;
+        yield break;
+    }
+
+
+
+    private IEnumerator fadeName()
+    {
+        menutext2.alpha = 0;
+        while (true)
+        {
+
+            
+            yield return new WaitForSeconds(5);
+            text_counter++;
+            StartCoroutine(fadeDisplay());
+            Debug.Log("5 sec" + " " + text_counter + "");
+            
+            
+        }
+    }
+
+    private IEnumerator fadeDisplay()
+    {
+      
+
+            float duration = .7f;
+            float currentTime = 0f;
+
+            float oldAlpha = 1.0f;
+            float finalAlpha = 0.0f;
+
+            while (currentTime < duration)
+            {
+                float alpha = Mathf.Lerp(oldAlpha, finalAlpha, currentTime / duration);
+                
+                float alpha2 = Mathf.Lerp(finalAlpha, oldAlpha, currentTime / duration);
+
+            if (text_counter % 2 == 0)
+            {
+                menutext1.alpha = alpha2;
+                menutext2.alpha = alpha;
+            }
+            else
+            {
+                menutext1.alpha = alpha;
+                menutext2.alpha = alpha2;
+            }
+
+
+                currentTime += Time.deltaTime;
+                yield return null;
+            }
+            
+            //yield break;
+
+        //}
+        //else
+        //{
+
+        //    float duration = .4f;
+        //    float currentTime = 0f;
+
+        //    float oldAlpha = 1.0f;
+        //    float finalAlpha = 0.0f;
+
+        //    while (currentTime < duration)
+        //    {
+        //        float alpha = Mathf.Lerp(oldAlpha, finalAlpha, currentTime / duration);
+
+        //        float alpha2 = Mathf.Lerp(finalAlpha, oldAlpha, currentTime / duration);
+
+        //        menutext1.alpha = alpha2;
+        //        menutext2.alpha = alpha;
+
+        //        currentTime += Time.deltaTime;
+        //        yield return null;
+        //    }
+
+            
+
+        //}
         yield break;
     }
 

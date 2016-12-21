@@ -20,7 +20,7 @@ public class GameOverGUI : MonoBehaviour
 
     int curScore = 0;
 
-    int frequencyOfAdds = 2;
+    int frequencyOfAdds = 10;
 
     void Awake()
     {
