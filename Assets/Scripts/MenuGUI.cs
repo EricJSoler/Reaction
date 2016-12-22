@@ -196,10 +196,10 @@ public class MenuGUI : MonoBehaviour {
         {
 
             
-            yield return new WaitForSeconds(5);
+            yield return new WaitForSeconds(4);
             text_counter++;
             StartCoroutine(fadeDisplay());
-            Debug.Log("5 sec" + " " + text_counter + "");
+            //Debug.Log("5 sec" + " " + text_counter + "");
             
             
         }
