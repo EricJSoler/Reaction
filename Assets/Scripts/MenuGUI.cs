@@ -27,8 +27,9 @@ public class MenuGUI : MonoBehaviour {
     public GameObject inf_Drag;
 
     //public AudioClip impact;
-    AudioSource audio;
-
+    public AudioClip audio;
+    AudioSource audioSource;
+    bool playAudioOnce;
 
     public SpriteRenderer titleRender;
     public SpriteRenderer underlineRender;
@@ -42,7 +43,7 @@ public class MenuGUI : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-
+        playAudioOnce = false;
         saveScore = GameObject.Find("ScoreSave");
         //gt = GetComponent<GUIText>();
         //canvas = GameObject.Find("Canvas");
@@ -54,7 +55,7 @@ public class MenuGUI : MonoBehaviour {
         StartCoroutine(fadeName());
 
 
-        audio = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
 
         if (saveScore.GetComponent<ScoresManager>().getUsername() == "unknown")
         {
@@ -84,7 +85,11 @@ public class MenuGUI : MonoBehaviour {
             if (infinite_timer > 10f)
             {
                 inf_Drag.SetActive(true);
-                //audio.Play();
+                if (!playAudioOnce)
+                {
+                    audioSource.PlayOneShot(audio);
+                    playAudioOnce = true;
+                }
                 //audio.Play(44100);
             }
         }
