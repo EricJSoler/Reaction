@@ -20,7 +20,7 @@ public class GameOverGUI : MonoBehaviour
 
     int curScore = 0;
 
-    int frequencyOfAdds = 10;
+    int frequencyOfAdds = 3;
 
     void Awake()
     {
@@ -29,7 +29,7 @@ public class GameOverGUI : MonoBehaviour
         curScore = scores_m.getcurScore();
         once = false;
 
-        if (scores_m.SinceAdd % frequencyOfAdds == 0)
+        if ((scores_m.SinceAdd % frequencyOfAdds) == 0 && (scores_m.SinceAdd != 0))
         {
             if (Advertisement.IsReady())
             {
@@ -90,37 +90,37 @@ public class GameOverGUI : MonoBehaviour
     void OnGUI()
     {
 
-        GUI.Label(new Rect(Screen.width / 4.2f, Screen.height / 5.25f, Screen.width / 6, Screen.width / 6), "Score: ", TextStyle);
-        GUI.Label(new Rect(Screen.width / 1.8f, Screen.height / 5.25f, Screen.width / 6, Screen.width / 6), curScore.ToString(), TextStyle);
+        GUI.Label(new Rect(Screen.width / 4.7f, Screen.height / 6.5f, Screen.width / 6, Screen.width / 6), "Score: ", TextStyle);
+        GUI.Label(new Rect(Screen.width / 1.8f, Screen.height / 6.5f, Screen.width / 6, Screen.width / 6), curScore.ToString(), TextStyle);
 
-        GUI.Label(new Rect(Screen.width / 4.2f, Screen.height / 3.5f, Screen.width / 6, Screen.width / 6), "Best: ", TextStyle);
+        GUI.Label(new Rect(Screen.width / 3.8f, Screen.height / 4.3f, Screen.width / 6, Screen.width / 6), "Best: ", TextStyle);
 
-        GUI.Label(new Rect(Screen.width / 1.8f, Screen.height / 3.5f, Screen.width / 6, Screen.width / 6), 
+        GUI.Label(new Rect(Screen.width / 1.8f, Screen.height / 4.3f, Screen.width / 6, Screen.width / 6), 
             scores_m.getHighScore().ToString()
             , TextStyle);
 
-        GUI.Label(new Rect(Screen.width / 8f, Screen.height / 2.13f, Screen.width / 6, Screen.width / 6), "World Record: ", TextStyle2);
+        GUI.Label(new Rect(Screen.width / 11f, Screen.height / 2.25f, Screen.width / 6, Screen.width / 6), "World Record: ", TextStyle2);
 
-        GUI.Label(new Rect(Screen.width / 8f, Screen.height / 2.43f, Screen.width / 6, Screen.width / 6), "Current Champ: ", TextStyle2);
+        GUI.Label(new Rect(Screen.width / 13.5f, Screen.height / 2.6f, Screen.width / 6, Screen.width / 6), "Current Champ: ", TextStyle2);
 
 
         if ((HighScoreList != null))
         {
-            GUI.Label(new Rect(Screen.width / 1.55f, Screen.height / 2.13f, Screen.width / 6, Screen.width / 6),
+            GUI.Label(new Rect(Screen.width / 1.8f, Screen.height / 2.25f, Screen.width / 6, Screen.width / 6),
                 HighScoreList[0].score.ToString()
                 , TextStyle);
 
-            GUI.Label(new Rect(Screen.width / 1.55f, Screen.height / 2.43f, Screen.width / 6, Screen.width / 6),
+            GUI.Label(new Rect(Screen.width / 1.8f, Screen.height / 2.6f, Screen.width / 6, Screen.width / 6),
                 HighScoreList[0].userName.ToString()
                 , TextStyle2);
         }
         else
         {
-            GUI.Label(new Rect(Screen.width / 1.55f, Screen.height / 2.13f, Screen.width / 6, Screen.width / 6),
+            GUI.Label(new Rect(Screen.width / 1.7f, Screen.height / 2.25f, Screen.width / 6, Screen.width / 6),
                 "-"
                 , TextStyle);
 
-            GUI.Label(new Rect(Screen.width / 1.55f, Screen.height / 2.43f, Screen.width / 6, Screen.width / 6),
+            GUI.Label(new Rect(Screen.width / 1.7f, Screen.height / 2.6f, Screen.width / 6, Screen.width / 6),
                 "-"
                 , TextStyle2);
         }
