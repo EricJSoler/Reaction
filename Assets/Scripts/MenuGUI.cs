@@ -66,9 +66,14 @@ public class MenuGUI : MonoBehaviour {
             input.text = saveScore.GetComponent<ScoresManager>().getUsername();
         }
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+
+
+
+
+
+    // Update is called once per frame
+    void Update () {
         TextStyle.fontSize = (int)(270.0f * (float)(Screen.width) / 1920.0f); //scale size font
         //userName = input.text;
         display_Text_Timer += (int) Time.deltaTime;
