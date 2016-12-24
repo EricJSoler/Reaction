@@ -105,20 +105,6 @@ public class MenuGUI : MonoBehaviour {
             inf_Drag.SetActive(false);
         }
 
-
-
-        //if(display_Text_Timer % 5 == 0)
-        //{
-        //    text_counter++;
-
-        //   // 
-
-
-        //}
-
-
-
-
     }
 
     void OnGUI()
@@ -148,13 +134,6 @@ public class MenuGUI : MonoBehaviour {
         fadeOut();
         
     }
-    //public string nameCheck(string name)
-    //{
-
-
-
-
-    //}
 
     public void fadeOut()
     {
