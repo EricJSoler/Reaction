@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class FadeScript : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class FadeScript : MonoBehaviour
     public int fadedir = -1;
     // Use this for initialization
 
-    static int LoadedLevel;
+    //static int LoadedLevel;
 
     void OnGUI()
     {
@@ -33,15 +34,15 @@ public class FadeScript : MonoBehaviour
     }
 
 
-    void OnLevelWasLoaded()
-    {
+    //void OnLevelWasLoaded()
+    //{
 
-        BeginFade(-1);
-    }
+    //    BeginFade(-1);
+    //}
 
     void Update()
     {
-        if (Application.loadedLevel == 1)
+        if (SceneManager.sceneCount == 1)
         {
             //StartCoroutine(wait());
             //BeginFade(1);

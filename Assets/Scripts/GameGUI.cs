@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class GameGUI : MonoBehaviour {
 
@@ -180,10 +181,10 @@ public class GameGUI : MonoBehaviour {
             GUI.Label(new Rect(Screen.width / 12, Screen.height / 15, Screen.width / 12, Screen.width / 12), score.ToString(), TextStyle);
         }
 
-        if (gameOver)
-        {
+        //if (gameOver)
+        //{
 
-        }
+        //}
 
 
         textDisplay();
