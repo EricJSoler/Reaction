@@ -87,6 +87,7 @@ public class MenuGUI : MonoBehaviour {
         if((Input.touchCount > 1) && input.text == "infinite")
         {
             infinite_timer += Time.deltaTime;
+            //Debug.Log(infinite_timer);
             if (infinite_timer > 10f)
             {
                 inf_Drag.SetActive(true);
@@ -190,7 +191,8 @@ public class MenuGUI : MonoBehaviour {
         titleRender.GetComponent<Renderer>().enabled = false;
         underlineRender.GetComponent<Renderer>().enabled = false;
         canvasGroup.interactable = false;
-        Application.LoadLevel(2);
+
+        SceneManager.LoadScene(2);
         //blurRenderer.GetComponent<Renderer>().enabled = false;
         //tutLighttxt.GetComponent<Renderer>().enabled = false;
         //tutRighttxt.GetComponent<Renderer>().enabled = false;

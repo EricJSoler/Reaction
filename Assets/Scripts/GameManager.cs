@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -589,7 +590,7 @@ public class GameManager : MonoBehaviour
 
         //save score, then load next scene
         saveScore.GetComponent<ScoresManager>().setcurScore(gameGUI.getScore());
-        Application.LoadLevel(3);
+        SceneManager.LoadScene(3);
     }
 
     public void EscapedScreen(string color)
