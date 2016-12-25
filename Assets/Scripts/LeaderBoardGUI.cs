@@ -53,7 +53,7 @@ public class LeaderBoardGUI : MonoBehaviour {
 
     void OnGUI()
     {
-        GUI.Label(new Rect(Screen.width / 5.5f, Screen.height / 14f, Screen.width / 6, Screen.width / 6), "LeaderBoards", TextStyle);
+        GUI.Label(new Rect(Screen.width / 5.5f, Screen.height / 18f, Screen.width / 6, Screen.width / 6), "LeaderBoards", TextStyle);
 
         if ((HighScoreList != null) && HighScoreList.Length == 10)
         {
@@ -193,7 +193,7 @@ public class LeaderBoardGUI : MonoBehaviour {
         }
         else
         {
-            GUI.Label(new Rect(Screen.width / 4.5f, Screen.height / 5.8f, Screen.width / 6, Screen.width / 6), " device is offline",
+            GUI.Label(new Rect(Screen.width / 10f, Screen.height / 5.8f, Screen.width / 6, Screen.width / 6), " temporarily offline" + "\n" + "\n" + "either check your connection "+ "\n" + "or the system is under maintenence",
                 TextStyle2);
         }
 
