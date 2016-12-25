@@ -11,7 +11,7 @@ public class MenuGUI : MonoBehaviour {
 
     public GameObject canvas;
     public string userName = "";
-
+    string newUsername = "";
 
     public static GameObject saveScore;
     float infinite_timer = 0;
@@ -56,6 +56,7 @@ public class MenuGUI : MonoBehaviour {
 
 
         audioSource = GetComponent<AudioSource>();
+        //audio = audioSource.GetComponent<AudioClip>();
 
         if (saveScore.GetComponent<ScoresManager>().getUsername() == "unknown")
         {
@@ -79,10 +80,7 @@ public class MenuGUI : MonoBehaviour {
         display_Text_Timer += (int) Time.deltaTime;
         //userName = input.text;
         //Debug.Log("name " + userName.ToString());
-        if (saveScore.GetComponent<ScoresManager>().getUsername() == "")
-        {
-            Debug.Log("nothing");
-        }
+    
 
         if((Input.touchCount > 1) && input.text == "infinite")
         {
@@ -130,7 +128,8 @@ public class MenuGUI : MonoBehaviour {
     public void onPlayClick()
     {
         userName = input.text;
-        saveScore.GetComponent<ScoresManager>().setNewUserName(userName);
+        newUsername = userName.Replace("*", "^");
+        saveScore.GetComponent<ScoresManager>().setNewUserName(newUsername);
         fadeOut();
         
     }
